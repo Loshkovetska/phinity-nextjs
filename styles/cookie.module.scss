@@ -1,0 +1,181 @@
+.cookie {
+  width: fit-content;
+  // height: 100vh;
+  // background: rgba(34, 36, 38, 0.4);
+  // box-shadow: 0 0 20px 2px rgb(0 0 0 / 20%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s ease-out all;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: fixed;
+  // top: 0;
+  // left: 0;
+
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+
+  &.anim {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__container {
+    box-shadow: 0 0 20px 2px rgb(0 0 0 / 20%);
+    position: relative;
+    background: #efebe4;
+    margin-bottom: 16px;
+    margin-right: 80px;
+    padding: 16px 32px 24px;
+    max-width: 413px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 395px;
+
+    @media (max-width: 1439px) {
+      margin-right: 16px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__close {
+    cursor: pointer;
+    min-width: 24px;
+    max-width: 24px;
+    height: 24px;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+  }
+
+  &__link {
+    margin-top: 10px;
+    font-family: 'Montserrat Regular';
+
+    font-size: 14px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    color: #494b4c;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 0%;
+      height: 2px;
+      background: #222426;
+      bottom: -8px;
+      left: 0;
+      transition: 0.5s ease-out width;
+    }
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: -16px;
+    align-self: flex-end;
+  }
+
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #222426;
+
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+
+  &__text {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    opacity: 0.8;
+    margin-bottom: 24px;
+    max-width: 340px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    &__container {
+      max-width: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 0;
+      padding: 16px 16px 24px;
+      transition: 1s ease-out all 0.6s;
+      transform: translateY(100%);
+      min-height: 348px;
+    }
+    &.anim {
+      opacity: 1;
+      visibility: visible;
+      .cookie__container {
+        transform: translateY(0%);
+      }
+    }
+
+    &__top {
+      margin-right: 0;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__link {
+      font-size: 12px;
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    &__container {
+      min-height: 366px;
+    }
+  }
+}

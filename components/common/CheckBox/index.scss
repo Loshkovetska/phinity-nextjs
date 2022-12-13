@@ -1,0 +1,51 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &__text {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+
+    display: flex;
+    align-items: center;
+
+    color: #222426;
+  }
+
+  &__cont {
+    min-width: 24px;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #222426;
+    margin-right: 16px;
+    position: relative;
+    transition: 0.3s ease-out background-color;
+    svg {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s ease-out opacity;
+    }
+  }
+  .input {
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  &.checked {
+    .checkbox__cont {
+      background: #222426;
+      svg {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

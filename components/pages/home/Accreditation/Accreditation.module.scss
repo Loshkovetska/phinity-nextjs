@@ -1,0 +1,136 @@
+.accreditation {
+  padding-top: 164px;
+  position: relative;
+
+  &__vector {
+    position: absolute;
+    transition: 5s cubic-bezier(0.19, 1, 0.22, 1) transform;
+    right: -16px;
+    @media (min-width: 1440px) {
+      right: -80px;
+    }
+    &.desk {
+      display: block;
+    }
+    &.mob {
+      transition: 5s cubic-bezier(0.19, 1, 0.22, 1) transform;
+      display: none;
+    }
+  }
+  &__container {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__title {
+    max-width: 520px;
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+    color: #222426;
+    margin-right: 130px;
+  }
+  &__text {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+    color: #222426;
+
+    opacity: 0.8;
+    max-width: 630px;
+  }
+
+  &__list {
+    display: flex;
+    margin-top: calc(80px - 32px);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    width: calc(100% / 4);
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 32px 0 0;
+    padding: 0 73px;
+  }
+
+  @media (max-width: 1024px) {
+    &__top {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__title {
+      margin-right: 0;
+      font-size: 48px;
+      text-align: center;
+    }
+    &__list {
+      margin-top: 16px;
+    }
+    &__text {
+      width: 70%;
+      max-width: none;
+      margin-top: 8px;
+      text-align: center;
+    }
+    &__item {
+      padding: 0 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+    &__item {
+      margin-top: 42px;
+      height: 102px;
+      width: calc(100% / 2);
+  
+    }
+    &__list {
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+    &__text {
+      font-size: 16px;
+    }
+    &__title {
+      font-size: 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__text {
+      width: 100%;
+    }
+
+    &__vector {
+      &.desk {
+        display: none;
+      }
+      &.mob {
+        display: block;
+      }
+    }
+    &__title {
+      width: 93%;
+    }
+    &__item {
+      img {
+        transform: scale(0.71);
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.links {
+  display: flex;
+  align-items: center;
+  max-width: 1440px;
+  margin: 9px auto 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  &__item,
+  &__separator {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #989898;
+    text-decoration: none;
+  }
+  &__separator {
+    margin: 0 2px;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    &__item,
+    &__separator {
+      text-align: center;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+    }
+  }
+}

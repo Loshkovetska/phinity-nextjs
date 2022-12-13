@@ -1,0 +1,121 @@
+.thanks {
+  width: 100%;
+  height: calc(100vh - 60px);
+  position: relative;
+  &__container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 629px;
+    padding: 56px 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+
+    text-align: center;
+
+    color: #222426;
+    margin-bottom: 24px;
+  }
+
+  &__sub-text {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 130%;
+    color: #222426;
+    margin-top: 35px;
+  }
+
+  &__text {
+    margin-top: 24px;
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+  }
+  &__hands {
+    width: 192px;
+    min-width: 192px;
+    height: 192px;
+  }
+
+  &__bottom {
+    margin-top: 56px;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      width: 200px;
+      height: 48px;
+    }
+
+    .button.black-border {
+      margin-right: 32px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__title {
+      font-size: 48px;
+      max-width: 416px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__container {
+      padding: 0;
+    }
+
+    &__title {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 120%;
+      max-width: 256px;
+    }
+
+    &__hands {
+      width: 130px;
+      min-width: auto;
+      max-width: 130px;
+      height: 130px;
+    }
+
+    &__bottom {
+      margin-top: 32px;
+      .button {
+        height: 48px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__sub-text {
+      margin-top: 24px;
+      font-size: 24px;
+    }
+    &__bottom {
+      width: 100%;
+      flex-direction: column;
+      .button {
+        width: 100%;
+        &.black-border {
+          margin-right: 0;
+          margin-bottom: 24px;
+        }
+      }
+    }
+  }
+}

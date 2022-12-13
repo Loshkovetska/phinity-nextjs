@@ -1,0 +1,234 @@
+.all-therapists {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  &__container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+ // opacity: 0;
+  transition: 0.5s opacity cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+  &.animated {
+    opacity: 1;
+  }
+
+  &__vector {
+    position: absolute;
+    top: 200px;
+    right: -80px;
+    width: 714px;
+    height: 763px;
+    transform: rotateY(180deg);
+    z-index: -1;
+    @media (max-width: 1439px) {
+      right: -16px;
+    }
+    transition: 3s linear transform;
+  }
+
+  &__intro {
+    display: none;
+    min-height: calc(100vh - 66px);
+    width: 100%;
+  }
+  .links {
+    @media (min-width: 1441px) {
+      max-width: 1440px;
+      margin: 32px auto;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 62px;
+    max-width: 1440px;
+    margin: 0 auto 62px;
+  }
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 120%;
+    transition: 1.5s transform ease;
+    transform-origin: bottom left;
+   // transform: rotate(-10deg) translate3d(0, -130%, 0);
+    &.animated {
+      transform: rotate(0) translate3d(0, 0%, 0);
+    }
+  }
+
+  &__vector {
+    position: absolute;
+    top: 100px;
+    @media (min-width: 1440px) {
+      right: -80px;
+    }
+    right: -16px;
+  }
+  .button.filter {
+    margin-left: 48px;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    transition: 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) opacity 1s,
+      0.5s ease-out background-color, 0.5s ease-out color,
+      0.5s ease-out border-color;
+    //opacity: 0;
+
+    &.animated {
+      opacity: 1;
+    }
+  }
+
+  .therapists__item.small {
+    opacity: 1;
+    width: 100%;
+    min-width: 100%;
+    margin-right: 0;
+    opacity: 0;
+
+    &.animated {
+      opacity: 1;
+    }
+
+    .therapists__item-img {
+      max-height: 408px;
+    }
+  }
+  &__list {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 305px);
+    justify-content: space-between;
+    grid-row-gap: 32px;
+    grid-column-gap: 20px;
+
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1441px) {
+    &__list {
+      grid-template-columns: repeat(4, calc(100% / 4 - 20px));
+    }
+  }
+
+  @media (max-width: 1310px) {
+    &__list {
+      grid-template-columns: repeat(3, calc(100% / 3 - 20px));
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__title {
+      font-size: 48px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__vector {
+      display: none;
+    }
+    &__title {
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 120%;
+    }
+    &__top {
+      margin-bottom: 24px;
+      padding-top: 64px;
+      justify-content: space-between;
+    }
+    &__list {
+      grid-template-columns: repeat(2, calc(100% / 2 - 20px));
+      justify-content: center;
+    }
+
+    &__intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-title {
+        max-width: 200px;
+        font-family: 'MADE Mirage';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 120%;
+        text-align: center;
+        margin-bottom: 47px;
+        animation-delay: 0.5s;
+      }
+      &-text {
+        max-width: 328px;
+
+        font-family: 'Montserrat Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      &-bottom {
+        flex-grow: 1;
+        display: flex;
+        margin-top: 40px;
+        width: 100%;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        align-items: center;
+      }
+
+      .button {
+        width: 272px;
+        height: 45px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__list {
+      grid-template-columns: repeat(1, 328px);
+      justify-content: center;
+      grid-row-gap: 24px;
+      grid-column-gap: 0;
+    }
+    .therapists__item.small {
+      .therapists__item-title {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+      }
+
+      .therapists__item-info {
+        padding: 24px;
+      }
+
+      .therapists__item-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    &__list {
+      grid-template-columns: repeat(1, 100%);
+      justify-content: center;
+      grid-row-gap: 24px;
+      grid-column-gap: 0;
+    }
+  }
+}

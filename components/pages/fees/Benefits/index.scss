@@ -1,0 +1,266 @@
+.benefits {
+  width: 100%;
+  padding: 180px 0 0;
+  position: relative;
+  z-index: 1;
+  transition: 0.5s opacity cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  opacity: 0;
+  &.animated {
+    opacity: 1;
+  }
+
+  &__title {
+    max-width: 512px;
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 120%;
+    margin-bottom: 16px;
+    transition: 1.5s transform ease;
+    transform-origin: bottom left;
+    transform: rotate(-10deg) translate3d(0, -130%, 0);
+    &.animated {
+      transform: rotate(0) translate3d(0, 0%, 0);
+    }
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    &.center {
+      justify-content: center;
+      margin-bottom: 180px;
+    }
+  }
+
+  &__col {
+    &:first-child {
+      border-right: 1px solid #222426;
+      padding-right: 90px;
+    }
+    &:last-child {
+      padding-left: 90px;
+    }
+  }
+
+  &__row-title {
+    max-width: 470px;
+
+    margin-bottom: 56px;
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 130%;
+    text-align: center;
+  }
+
+  &__vector {
+    position: absolute;
+    top: 0;
+    right: -124px;
+    transition: 3s ease-out all;
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+
+  &__row-text {
+    max-width: 468px;
+
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+
+    text-align: center;
+    color: #222426;
+  }
+
+  &__list {
+    max-width: 630px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #0033cc;
+  }
+
+  &__item {
+    padding-bottom: 16px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 258px;
+
+      height: 1px;
+      background: #ded9ce;
+      transition: 0.5s ease-out width, 0.5s ease-out background-color;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 39px;
+    }
+
+    &-num {
+      font-family: 'MADE Mirage';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    &-text {
+      font-family: 'Montserrat Regular';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 160%;
+      color: #222426;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &__list {
+      max-width: none;
+      display: grid;
+      grid-template-columns: repeat(3, calc(100% / 3 - 40px));
+      column-gap: 60px;
+    }
+
+    &__row:last-child {
+      flex-direction: column;
+    }
+
+    &__title {
+      max-width: 797px;
+      margin-bottom: 64px;
+    }
+    &__item {
+      &::after {
+        display: none;
+      }
+    }
+
+    &__col {
+      &:first-child {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+      &:last-child {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__title {
+      font-size: 48px;
+    }
+
+    &__row {
+      &-title {
+        font-size: 24px;
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+
+    &__title {
+      font-size: 30px;
+      line-height: 120%;
+      margin-bottom: 32px;
+    }
+
+    &__row {
+      &-title {
+        font-size: 20px;
+        line-height: 130%;
+        margin-bottom: 24px;
+      }
+      &-text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
+
+    &__list {
+      grid-template-columns: repeat(1, 100%);
+      column-gap: 0;
+      max-width: 500px;
+    }
+
+    &__row {
+      flex-direction: column;
+      align-items: center;
+      &:last-child {
+        align-items: flex-start;
+      }
+      &.center {
+        margin-bottom: 64px;
+      }
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 32px;
+      }
+      &-num {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        margin-bottom: 12px;
+      }
+
+      &-text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+      }
+
+      &::after {
+        display: block;
+      }
+    }
+    &__col {
+      &:first-child {
+        padding-right: 0;
+        border-right: none;
+        padding-left: 0;
+      }
+      &:last-child {
+        margin-top: 64px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    &__vector {
+      width: 531.59px;
+      height: 964.04px;
+      right: auto;
+      transition: 2.5s ease-out all;
+      transform: rotateX(180deg) rotateY(0);
+
+      left: -125px;
+    }
+  }
+}

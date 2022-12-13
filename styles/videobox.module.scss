@@ -1,0 +1,169 @@
+.videobox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  transition: 0.3s ease-in-out background-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  &.show {
+    visibility: visible;
+
+    background: rgba(34, 36, 38, 0.4);
+
+    .videobox__container {
+      transform: scale(1);
+      opacity: 1;
+      width: 70vw;
+      height: 500px;
+
+      @media (min-width: 1536px) {
+        height: 70vh;
+      }
+
+      @media (max-width: 1440px) and (min-height: 900px) {
+        height: 600px;
+      }
+
+      @media (max-width: 1280px) and (min-height: 900px) {
+        height: 550px;
+      }
+
+      @media (max-width: 1024px) {
+        width: 90vw;
+      }
+
+      @media (max-width: 900px) {
+        height: 480px;
+      }
+
+      @media (max-width: 480px) {
+        width: calc(100% - 32px);
+        height: 280px;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 350px) {
+        height: 180px;
+      }
+    }
+
+    .videobox__video {
+      opacity: 1;
+    }
+  }
+
+  &__container {
+    width: 0;
+    height: 0;
+    border-radius: 32px;
+    background: black;
+
+    display: flex;
+    transform: scale(0.5);
+    opacity: 0;
+    transition: 0.8s ease;
+  }
+
+  &__close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    display: flex;
+    padding: 6px;
+    align-items: center;
+    justify-content: center;
+    background: #efebe4;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+    @media (max-width: 480px) {
+      right: 10px;
+      top: 10px;
+    }
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+    @media (max-width: 480px) {
+      border-radius: 8px;
+    }
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    outline: none;
+    border: none;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    isolation: isolate;
+    opacity: 0;
+    transition: 1s ease all 0.8s;
+
+    @media (max-width: 480px) {
+      border-radius: 8px;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    background: #efebe4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-out all;
+
+    @media (max-width: 480px) {
+      width: 44px;
+      height: 44px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    &.play {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    path {
+      transition: 0.3s ease-in-out all;
+    }
+
+    &:hover {
+      // transform: scale(1.1);
+      background: #0033cc;
+
+      path {
+        fill: #efebe4;
+      }
+    }
+  }
+}

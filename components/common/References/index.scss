@@ -1,0 +1,82 @@
+.references {
+  width: 100%;
+  padding: 32px 24px;
+  background: #faf5ef;
+  margin: 140px auto 0;
+  max-width: 1440px;
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 130%;
+    text-transform: uppercase;
+    color: #222426;
+  }
+
+  &__list {
+    margin-top: 24px;
+  }
+
+  &__item {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #222426;
+    transition: 0.5s ease-in-out all;
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+
+    a {
+      hyphens: auto;
+      color: #0033cc;
+      text-underline-offset: 3px;
+      word-wrap: break-word;
+      word-break: break-word;
+      display: block;
+      cursor: pointer;
+      svg {
+        margin-left: 1px;
+      }
+      &:hover {
+        path {
+          stroke: #0033cc;
+        }
+      }
+      // @media (max-width: 768px) {
+      //   overflow: hidden;
+      //   display: -webkit-box;
+      //   -webkit-line-clamp: 1;
+      //   -webkit-box-orient: vertical;
+      //   overflow: hidden;
+      // }
+    }
+
+    path {
+      transition: 0.5s ease-in-out all;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 70px;
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__list {
+      margin-top: 16px;
+    }
+
+    &__item {
+      font-size: 14px;
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

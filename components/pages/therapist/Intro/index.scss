@@ -1,0 +1,353 @@
+.therapist-intro {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &__vector {
+    position: absolute;
+    animation-duration: 20s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-name: move;
+    z-index: -1;
+    &.w31 {
+      width: 31px;
+      height: 31px;
+      top: 64px;
+      right: 397px;
+    }
+    &.w25 {
+      width: 25px;
+      height: 25px;
+      bottom: 0;
+      right: -74px;
+    }
+    &.w71 {
+      width: 71px;
+      height: 71px;
+      bottom: 33px;
+      left: calc(50% - 71px / 2);
+    }
+    &.w72 {
+      width: 72px;
+      height: 72px;
+      bottom: 130px;
+      left: 130px;
+    }
+    &.w120 {
+      width: 120px;
+      height: 120px;
+      top: 0;
+      left: calc(50% - 60px);
+    }
+    &.w185 {
+      width: 185px;
+      height: 185px;
+      left: 277px;
+      top: 277px;
+    }
+    &.w254 {
+      width: 225px;
+      height: 225px;
+      right: -60px;
+      bottom: 158px;
+    }
+  }
+
+  @keyframes move {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 1440px;
+    margin: 28px auto 0;
+    padding: 32px 0;
+  }
+
+  &__col {
+    width: 522px;
+    max-width: 522px;
+    display: flex;
+    flex-direction: column;
+
+    .button {
+      width: 260px;
+      height: 56px;
+    }
+    &-bottom {
+      display: flex;
+
+      flex-grow: 1;
+      margin-top: 48px;
+      & + .intro__widget {
+        display: none;
+
+        @media (max-width: 900px) {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__img {
+    //margin: 58px 0 110px;
+    width: 464px;
+    min-width: 464px;
+    height: 464px;
+    position: relative;
+    border-radius: 50%;
+    margin-left: 120px;
+    img:not(.therapist-intro__vectors) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    img.therapist-intro__vectors {
+      position: absolute;
+      top: 0;
+      right: -46%;
+      z-index: -1;
+      height: 100%;
+    }
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+  }
+
+  &__small-title {
+    font-family: 'Montserrat Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 0.05em;
+    color: #222426;
+    animation-duration: 0.5s;
+    animation-delay: 1s;
+  }
+
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+    display: flex;
+    flex-direction: column;
+
+    animation-duration: 0.5s;
+    animation-delay: 1s;
+  }
+
+  .button {
+    animation-duration: 1s;
+    animation-delay: 1.3s;
+  }
+
+  &__position {
+    margin-top: 32px;
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    color: #222426;
+
+    opacity: 0.8;
+    animation-delay: 1.5s;
+    & + .intro__widget {
+      display: block;
+
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+  }
+
+  .intro__widget {
+    animation-delay: 2s;
+    margin-top: 32px;
+
+    @media (max-width: 900px) {
+      .intro__widget-col {
+        align-items: center;
+      }
+    }
+  }
+
+  @media (max-width: 1250px) {
+    &__col {
+      max-width: 480px;
+      width: 480px;
+      margin-right: 80px;
+    }
+
+    &__img {
+      margin-left: 100px;
+    }
+  }
+  @media (max-width: 1120px) {
+    &__col {
+      max-width: 450px;
+      width: 450px;
+      margin-right: 48px;
+    }
+
+    &__img {
+      min-width: 400px;
+      width: 400px;
+      height: 400px;
+    }
+  }
+  @media (max-width: 1024px) {
+    &__col {
+      max-width: 400px;
+      width: 400px;
+    }
+
+    &__title {
+      font-size: 48px;
+    }
+
+    &__img {
+      margin-left: 48px;
+      width: 350px;
+      height: 350px;
+      min-width: 350px;
+      .therapist-intro__vectors {
+        right: -70%;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    &__content {
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-top: 0;
+    }
+
+    .intro__widget {
+      animation-delay: 3s;
+      margin-top: 40px;
+    }
+
+    &__img {
+      margin-top: 0;
+      margin-left: 0;
+      margin-bottom: 32px;
+    }
+    &__col {
+      margin-left: 0;
+      align-items: center;
+      margin-right: 0;
+      .button {
+        margin-top: 40px;
+        width: 272px;
+        height: 45px;
+      }
+      &-bottom {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+    }
+
+    &__small-title,
+    &__title {
+      text-align: center;
+    }
+
+    &__position {
+      text-align: center;
+      margin-top: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__vector {
+      &.w254,
+      &.w72,
+      &.w120,
+      &.w185 {
+        display: none;
+      }
+
+      &.w71 {
+        width: 70px;
+        height: 70px;
+        left: 6px;
+        bottom: calc(50% - 150px);
+      }
+      &.w25 {
+        width: 15px;
+        height: 15px;
+        bottom: auto;
+        right: -13px;
+        top: 0;
+      }
+      &.w35 {
+        width: 35px;
+        height: 35px;
+      }
+      &.w31 {
+        width: 25px;
+        height: 25px;
+        bottom: 60px;
+        top: auto;
+        right: 0;
+      }
+    }
+    &__title {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 120%;
+    }
+    &__small-title {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 160%;
+      letter-spacing: 0.05em;
+    }
+    &__position {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+    }
+
+    &__col {
+      height: 100%;
+      &-bottom {
+        flex-grow: 0;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__img {
+      width: 246px;
+      height: 246px;
+      min-width: 246px;
+      .therapist-intro__vectors {
+        right: -90%;
+      }
+    }
+  }
+}

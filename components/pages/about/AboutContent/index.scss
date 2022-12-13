@@ -1,0 +1,140 @@
+.about-content {
+  width: 100%;
+  position: relative;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .button {
+    display: none;
+  }
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 120%;
+    transition: 1.5s transform ease;
+    transform-origin: bottom left;
+    // transform: rotate(-10deg) translate3d(0, -130%, 0);
+    // &.animated {
+    //   transform: rotate(0) translate3d(0, 0%, 0);
+    // }
+  }
+
+  &__text {
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+
+    color: #222426;
+
+     opacity: 0.8;
+    margin: 24px 0 140px;
+    max-width: 738px;
+
+    // transition: 0.5s ease-in-out 1.5s;
+
+    // &.animated {
+    //   opacity: 0.8;
+    // }
+  }
+
+  .intro__bottom {
+    display: none;
+  }
+
+  &__vector {
+    transition: 5s cubic-bezier(0.19, 1, 0.22, 1) transform;
+    position: absolute;
+    top: 0;
+    left: -80px;
+    z-index: 0;
+    @media (max-width: 1439px) {
+      left: -16px;
+    }
+
+    @media (min-width: 1550px) {
+      width: 600px;
+      height: 800px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__title {
+      font-size: 62px;
+      line-height: 120%;
+    }
+
+    .intro__bottom {
+      margin-top: 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+    }
+    &__vector {
+      left: -80px;
+      top: -80px;
+      transform: scale(0.7);
+      z-index: 0;
+    }
+    .button {
+      display: flex;
+      animation-delay: 1s;
+    }
+    .intro__widget {
+      animation-delay: 1.5s;
+      animation-duration: 0.5s;
+    }
+
+    .intro__bottom {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 40px;
+      flex-grow: 0;
+      // flex-direction: column;
+      // align-items: center;
+      // height: 100%;
+      // flex-grow: 1;
+      // padding-bottom: 52px;
+    }
+    &__title {
+      text-align: center;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 120%;
+    }
+    &__text {
+      margin: 13px 0 0;
+      text-align: center;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      max-width: 500px;
+    }
+    .intro__scroll {
+      animation-delay: 2s;
+    }
+  }
+}

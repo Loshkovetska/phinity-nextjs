@@ -1,0 +1,225 @@
+.location {
+  width: 100%;
+  position: relative;
+  padding-top: 140px;
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  &__title {
+    font-family: 'MADE Mirage';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+    margin-bottom: 40px;
+  }
+
+  &__vector {
+    position: absolute;
+
+    &.desk {
+      top: 50%;
+      left: -80px;
+      transition: 3s ease-out all;
+
+      @media (max-width: 1439px) {
+        left: -16px;
+      }
+    }
+    &.mob {
+      display: none;
+      top: 0%;
+      left: -16px;
+      transition: 2.5s ease-out all;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &:hover {
+      .location__col-title {
+        color: #0033cc;
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    min-width: 459px;
+    margin-right: 96px;
+    &-block {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      & > div:not(:last-child) {
+        margin-bottom: 32px;
+      }
+    }
+    &-title {
+      font-family: 'MADE Mirage';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 130%;
+
+      margin-bottom: 16px;
+      position: relative;
+      width: fit-content;
+      transition: 0.3s ease-in-out all;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 1px;
+        background: #0033cc;
+        transition: 0.3s ease-in-out all;
+      }
+      &.active {
+        color: #0033cc;
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+    &-text {
+      font-family: 'Montserrat Regular';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 160%;
+    }
+  }
+
+  &__map {
+    height: 320px;
+    max-height: 320px;
+    flex-grow: 1;
+    background-color: #fff;
+    overflow: hidden;
+    align-self: center;
+    button[aria-label='Показать спутниковую карту'],
+    .gm-svpc {
+      display: none !important;
+    }
+
+    transition: 0.3s ease-in-out all;
+
+    &.hidden-map {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 1366px) {
+    &__col {
+      margin-right: 32px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &__container {
+      flex-direction: column;
+    }
+    &__map {
+      align-self: center;
+      margin-top: 48px;
+      width: 100%;
+      height: 450px;
+      max-height: 450px;
+    }
+
+    &__col {
+      min-width: auto;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__title {
+      font-size: 48px;
+      margin-bottom: 32px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__col-title {
+      font-size: 24px;
+      line-height: 130%;
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+    &__title {
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 120%;
+    }
+
+    &__vector {
+      &.desk {
+        display: none;
+      }
+      &.mob {
+        display: block;
+      }
+    }
+    &__col-title {
+      font-size: 20px;
+      line-height: 130%;
+      margin-bottom: 16px;
+    }
+
+    &__col-text {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+    }
+
+    &__map {
+      align-self: center;
+      margin-top: 48px;
+    }
+  }
+  @media (max-width: 576px) {
+    &__map {
+      width: 100%;
+      height: 500px;
+      max-height: 400px;
+    }
+
+    &__col-title::before {
+      bottom: -4px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__map {
+      width: 100%;
+      max-height: 280px;
+    }
+
+    &__col-title::before {
+      bottom: -4px;
+    }
+  }
+}

@@ -1,0 +1,253 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 41px;
+  &__link {
+    text-decoration: none;
+    font-family: 'Montserrat Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #222426;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    svg {
+      display: none;
+
+      min-width: 16px !important;
+      height: 16px !important;
+      max-width: 16px !important;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 0%;
+      height: 2px;
+      background: #222426;
+      bottom: -8px;
+      left: 0;
+      transition: 0.5s ease-out width;
+    }
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+
+    &.last {
+      margin-right: 0;
+    }
+
+    &.active,
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__socials {
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ded9ce;
+    display: none;
+
+    @media (max-width: 1024px) {
+      display: block;
+    }
+  }
+
+  &__contacts {
+    padding-top: 16px;
+    width: 100%;
+    margin-bottom: 32px;
+    display: none;
+
+    @media (max-width: 1024px) {
+      display: block;
+    }
+  }
+
+  & > .button.black-border {
+    display: none;
+    @media (max-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  &__contact {
+    margin-top: 12px;
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #222426;
+    cursor: pointer;
+  }
+
+  &__title {
+    width: 100%;
+    font-family: 'Montserrat SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 140%;
+    opacity: 0.8;
+    margin-bottom: 2px;
+  }
+
+  &__social {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: rgba($color: #222426, $alpha: 0.8);
+    margin-top: 14px;
+    svg,
+    img {
+      margin-right: 8px;
+    }
+
+    svg {
+      path,
+      circle {
+        transition: 0.5s ease-out all;
+      }
+    }
+
+    &:hover {
+      path {
+        fill: #222426;
+      }
+      circle {
+        stroke: #222426;
+      }
+    }
+  }
+
+  @media (max-width: 1311px) {
+    &__logo {
+      margin-right: 32px;
+      width: 100px;
+      min-width: 100px;
+    }
+    &__link {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    &__separator {
+      margin: 0 40px 0 28px;
+    }
+
+    &__search {
+      margin-right: 48px;
+    }
+  }
+
+  @media (max-width: 1120px) {
+    &__link {
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+
+    &__separator {
+      margin: 0 16px 0 24px;
+    }
+
+    &__search {
+      margin-right: 24px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-right: 0;
+    justify-content: initial;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px 32px;
+    position: fixed;
+    width: 400px;
+    top: 55px;
+    left: 0%;
+    height: calc(100% - 55px);
+    overflow: auto;
+    transform: translate(-100%, 0);
+    opacity: 0;
+    z-index: 10000;
+    transition: 0.7s ease-out transform, 0.5s ease-out opacity 0.1s;
+    background: #efebe4;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+      background: #efebe4;
+    }
+
+    &::-webkit-scrollbar-track {
+      width: 1px;
+      background: #efebe4;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 1px;
+      background: #ded9ce;
+    }
+
+    &__link {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      justify-content: space-between;
+      width: 100%;
+      padding: 16px 0;
+
+      svg {
+        display: block;
+      }
+
+      border-bottom: 1px solid #ded9ce;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      &::after {
+        display: none;
+      }
+    }
+
+    &.open {
+      transform: translate(0%, 0);
+      opacity: 1;
+    }
+
+    .button {
+      height: 48px;
+      max-width: 328px;
+      min-height: 48px;
+      width: 328px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+
+    .button {
+      width: 100% !important;
+      max-width: none;
+    }
+  }
+}
