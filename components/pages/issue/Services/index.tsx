@@ -24,15 +24,15 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
 
   const Vector = ({ id }: { id: number }) => {
     const vectors = [
-      <V1 key={2}/>,
-      <V2  key={3}/>,
-      <V3  key={4}/>,
-      <V4  key={5}/>,
-      <V5  key={6}/>,
-      <V6  key={7}/>,
-      <V7  key={8}/>,
-      <V9  key={9}/>,
-      <V10  key={10}/>,
+      <V1 key={2} />,
+      <V2 key={3} />,
+      <V3 key={4} />,
+      <V4 key={5} />,
+      <V5 key={6} />,
+      <V6 key={7} />,
+      <V7 key={8} />,
+      <V9 key={9} />,
+      <V10 key={10} />,
     ]
     return vectors[
       id >= vectors.length ? Math.floor(id / vectors.length) - 1 : id
@@ -129,7 +129,7 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
 
           <a href={services} className="button p18p40 black-border">
             <div className="button__text">
-              See all <Arrow />
+              See All <Arrow />
             </div>
           </a>
         </div>
@@ -143,7 +143,7 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
             >
               <div className="our-services__item-content">
                 <div className="our-services__item-img">
-                  <img src={s.img} alt={s.title} loading='lazy'/>
+                  <img src={s.img} alt={s.title} loading="lazy" />
                 </div>
                 <div
                   className={classNames('our-services__item-title')}
@@ -158,7 +158,7 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
         <div className="services-block__bottom">
           <a href={services} className="button p18p40 black-border">
             <div className="button__text">
-              See all <Arrow />
+              See All <Arrow />
             </div>
           </a>
         </div>

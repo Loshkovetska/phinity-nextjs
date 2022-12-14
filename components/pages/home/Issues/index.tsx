@@ -125,7 +125,7 @@ const Issues = observer(
             {width > 768 && (
               <a href={issues} className="button p18p40 black-border">
                 <div className="button__text">
-                  See all <Arrow />
+                  See All <Arrow />
                 </div>
               </a>
             )}
@@ -150,7 +150,7 @@ const Issues = observer(
           {width <= 768 && (
             <a href={issues} className="button p18p40 black-border">
               <div className="button__text">
-                See all <Arrow />
+                See All <Arrow />
               </div>
             </a>
           )}

@@ -182,7 +182,6 @@ const BlogContent = observer(() => {
     }, 1000)
   }, [])
 
-
   return (
     <>
       <section className="blog-content">
@@ -276,16 +275,14 @@ const BlogContent = observer(() => {
                     setShow(!show)
                   }}
                 >
-                  {!show ? 'See all' : 'Hide'}
+                  {!show ? 'See All' : 'Hide'}
                 </div>
               ) : (
                 <></>
               )}
 
               <div className="blog-content__aside-visible">
-                <div className="blog-content__aside-title">
-                  Trending Blog
-                </div>
+                <div className="blog-content__aside-title">Trending Blog</div>
                 <div className="blog-content__aside-list">
                   {content.popposts?.slice(0, 1).map((b: Post, i: number) => (
                     <BlogItem b={b} key={i} arr={content.posts} />

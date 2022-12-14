@@ -190,7 +190,7 @@ const VideosList = observer(({ videos }: { videos: any }) => {
               setShowCats(!showCats)
             }}
           >
-            {!showCats ? 'See all' : 'Hide'}
+            {!showCats ? 'See All' : 'Hide'}
           </div>
         ) : (
           <></>

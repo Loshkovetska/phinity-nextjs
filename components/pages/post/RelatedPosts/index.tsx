@@ -66,7 +66,7 @@ const RelatedPosts = observer(({ title }: { title: string }) => {
           </div>
           <a className="p18p40 black-border button" href={blog}>
             <div className="button__text">
-              See all <Arrow />
+              See All <Arrow />
             </div>
           </a>
         </div>
@@ -100,7 +100,7 @@ const RelatedPosts = observer(({ title }: { title: string }) => {
           <a className="p18p40 black-border button" href={blog}>
             <div className="button__text">
               <>
-                See all <Arrow />
+                See All <Arrow />
               </>
             </div>
           </a>
