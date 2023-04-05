@@ -4,12 +4,9 @@ import Triangle from '../../../../assets/triangle.svg'
 
 import PageLinks from '../../../common/PageLinks'
 import { useEffect, useState } from 'react'
-import GlobalState from '../../../../stores/GlobalState'
-import DBStore from '../../../../stores/DBStore'
-import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
-import { changePlayerState, setVideo } from '../../../common/VideoBox'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const VideosContent = observer(({ videosC }: { videosC: any }) => {
   const [link, setLink] = useState('')
@@ -148,12 +145,12 @@ const VideosContent = observer(({ videosC }: { videosC: any }) => {
     }, 1000)
   }, [videosC])
 
-  const links = GlobalState.links
+  const { links } = useContentState()
   let videos = '',
     main = ''
   if (links) {
-    videos = links.find((l: any) => l.id == 644).link
-    main = links.find((l: any) => l.id == 2).link
+    videos = links.find((l: any) => l.id == 644)?.link
+    main = links.find((l: any) => l.id == 2)?.link
   }
   return (
     <section className="videos-content">
@@ -189,7 +186,7 @@ const VideosContent = observer(({ videosC }: { videosC: any }) => {
                   href={`${videos}/${v.link}`}
                   className="videos-content__poster"
                 >
-                  <img src={v.poster} alt={v?.title} loading="lazy" />
+                  <img src={v.poster.replaceAll('admin.', '')} alt={v?.alt} loading="lazy" />
                 </a>
                 <div className="videos-content__col">
                   <div className="videos-content__col-title">{v.title}</div>
@@ -211,7 +208,7 @@ const VideosContent = observer(({ videosC }: { videosC: any }) => {
               <a className="videos-content__img" href={link}>
                 {videosC?.list?.map((vi: any, id: number) => (
                   <img
-                    src={vi.poster}
+                    src={vi.poster.replaceAll('admin.', '')}
                     alt={vi?.title}
                     key={id}
                     className={classNames(!id && 'active')}

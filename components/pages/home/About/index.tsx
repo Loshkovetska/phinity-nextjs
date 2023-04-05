@@ -12,6 +12,7 @@ import { changePlayerState, setVideo } from '../../../common/VideoBox'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import VideoPreload from '../../../common/VideoPreload'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const About = observer(({ about }: { about: any }) => {
   const [showVideo, setShow] = useState(false)
@@ -98,10 +99,10 @@ const About = observer(({ about }: { about: any }) => {
 
   if (!about) return <></>
 
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let aboutL = ''
   if (linksL) {
-    aboutL = linksL.find((l: any) => l.id == 259).link
+    aboutL = linksL.find((l: any) => l.id == 259)?.link
   }
 
   return (

@@ -63,9 +63,9 @@ const OurTeam = observer(({ team }: { team: any }) => {
         </div>
         <div className="our-team__img-cont">
           <img
-            src={width > 600 ? team.imgDesk : team.imgMob}
+            src={width > 600 ? team.imgDesk.replaceAll('admin.', '') : team.imgMob.replaceAll('admin.', '')}
             className="our-team__img"
-            alt={team.title}
+            alt={width > 600 ? team.altDesk.replaceAll('admin.', '') : team.altMob.replaceAll('admin.', '')}
           />
         </div>
         <div className="our-team__list">

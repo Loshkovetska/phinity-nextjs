@@ -9,7 +9,8 @@ const ReviewWidget = observer(() => {
     return new Array(Math.ceil(count)).fill(0, 0)
   } // delay-2s
 
-  const { reviewIO } = useContentState()
+  // const { reviewIO } = useContentState()
+  const reviewIO = GlobalState.rating
   return (
     <a
       rel="noreferrer"
@@ -20,13 +21,16 @@ const ReviewWidget = observer(() => {
       <div className="intro__widget-col">
         <div className="intro__widget-stars">
           <ReviewIcon className="intro__widget-icon" />
-          {getStars(reviewIO?.average_rating).map((s, i) => (
-            <BlueStar key={i} className="intro__widget-star" />
-          ))}
+          {reviewIO &&
+            getStars(reviewIO?.average_rating).map((s, i) => (
+              <BlueStar key={i} className="intro__widget-star" />
+            ))}
         </div>
         <span>
           Read our{' '}
-          <span className="intro__widget-count">{reviewIO?.num_ratings}</span>
+          <span className="intro__widget-count">
+            {reviewIO ? reviewIO?.num_ratings : ''}
+          </span>
           {reviewIO?.num_ratings > 1 || !reviewIO?.num_ratings
             ? 'reviews'
             : 'review'}{' '}

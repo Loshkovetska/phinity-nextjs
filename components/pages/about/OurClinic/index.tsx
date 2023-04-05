@@ -104,7 +104,11 @@ const OurClinic = observer(({ clinic }: { clinic: any }) => {
               >
                 {clinic.images?.map((l: any, id: number) => (
                   <div className="our-clinic__item" key={id}>
-                    <img src={l} alt={clinic.title} loading="lazy" />
+                    <img
+                      src={l.src?.replaceAll('admin.', '')}
+                      alt={l.alt}
+                      loading="lazy"
+                    />
                   </div>
                 ))}
               </CustomSlider>
@@ -114,7 +118,7 @@ const OurClinic = observer(({ clinic }: { clinic: any }) => {
             <div className="our-clinic__list our-clinic__list-center">
               {clinic.images?.map((l: any, id: number) => (
                 <div className="our-clinic__item" key={id}>
-                  <img src={l} alt={clinic.title} loading="lazy" />
+                  <img src={l.src?.replaceAll('admin.', '')} alt={l.alt} loading="lazy" />
                 </div>
               ))}
             </div>

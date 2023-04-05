@@ -1,5 +1,4 @@
 import Arrow from '../../../../assets/caret-right.svg'
-import { outputDate } from '../../../../methods/output'
 import { observer } from 'mobx-react'
 import { useEffect, useState } from 'react'
 import GlobalState from '../../../../stores/GlobalState'
@@ -10,6 +9,7 @@ import CustomSlider from '../../../common/CustomSlider'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import BlogItem from '../../../common/BlogItem'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const Blogs = observer(
   ({ dt, arr }: { dt: any; arr: Array<Post> | null | undefined }) => {
@@ -38,10 +38,10 @@ const Blogs = observer(
     if (!arr || !arr.length) return <></>
     const posts = arr.slice(0, arr.length)
 
-    const links = GlobalState.links
+    const {links} = useContentState();
     let blog = ''
     if (links) {
-      blog = links.find((l: any) => l.id == 272).link
+      blog = links.find((l: any) => l.id == 272)?.link
     }
 
     return (
@@ -78,7 +78,7 @@ const Blogs = observer(
                       (a: any, b: any) =>
                         new Date(b.date).getTime() - new Date(a.date).getTime(),
                     )
-                    .slice(0, 20)
+                    .slice(0, 5)
                     .map((b: any, i: number) => (
                       <BlogItem b={b} key={i} arr={arr} />
                     ))}
@@ -92,7 +92,7 @@ const Blogs = observer(
                     (a: any, b: any) =>
                       new Date(b.date).getTime() - new Date(a.date).getTime(),
                   )
-                  .slice(0, 20)
+                  .slice(0, 5)
                   .map((b: any, i: number) => (
                     <BlogItem b={b} key={i} arr={arr} />
                   ))}

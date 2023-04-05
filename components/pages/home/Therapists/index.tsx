@@ -10,6 +10,7 @@ import CheckerItemsInsideCont from '../../../common/CheckerItemsInsideCont'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import ImageComponent from '../../../common/ImageComponent'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 const Therapists = observer(
   ({
     therapist,
@@ -86,10 +87,10 @@ const Therapists = observer(
 
     if (!dt) return <></>
 
-    const linksL = GlobalState.links
+    const { links: linksL } = useContentState()
     let therapistsL = ''
     if (linksL) {
-      therapistsL = linksL.find((l: any) => l.id == 268).link
+      therapistsL = linksL.find((l: any) => l.id == 268)?.link
     }
 
     return (
@@ -113,7 +114,7 @@ const Therapists = observer(
               href={`${therapistsL}/${dt[0].link}`}
             >
               <div className="therapists__item-img">
-                <ImageComponent src={dt[0].img} alt={therapist.title} />
+                <ImageComponent src={dt[0].img} alt={dt[0].alt || ''} />
               </div>
               <div className="therapists__item-info">
                 <div className="therapists__item-title">{dt[0].name}</div>
@@ -247,7 +248,7 @@ const Therapists = observer(
                         }
                       >
                         <div className="therapists__item-img">
-                          <ImageComponent src={i.img} alt={i.name} />
+                          <ImageComponent src={i.img} alt={i.alt||""} />
                         </div>
                         <div className="therapists__item-info">
                           <div className="therapists__item-title">{i.name}</div>
@@ -269,7 +270,7 @@ const Therapists = observer(
                       href={`${therapistsL}/${i.link}`}
                     >
                       <div className="therapists__item-img">
-                        <ImageComponent src={i.img} alt={i.name} />
+                        <ImageComponent src={i.img} alt={i.alt||""} />
                       </div>
                       <div className="therapists__item-info">
                         <div className="therapists__item-title">{i.name}</div>

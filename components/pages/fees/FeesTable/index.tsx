@@ -11,9 +11,9 @@ const FeesTable = observer(() => {
   const { fees }: any = content
 
   let main = ''
-  const linksL = GlobalState.links
+  const linksL = content.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
   return (
     <section className="fees-table">

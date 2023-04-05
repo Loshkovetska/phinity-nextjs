@@ -9,6 +9,7 @@ import NewVideos from '../pages/videos/NewVideos'
 import { runInAction } from 'mobx'
 import Layout from '../common/Layout'
 import classNames from 'classnames'
+import Subscribe from '../common/Subscribe'
 
 const VideosPage = observer(({ dt }: { dt: any }) => {
   const [showBottom, setBottom] = useState(false)
@@ -30,6 +31,7 @@ const VideosPage = observer(({ dt }: { dt: any }) => {
           <PopularVideos content={dt.videosC.video} />
           <Reviews dt={dt.videosC.reviews} />
           <BookBlock />
+          <Subscribe />
         </div>
       </Layout>
       <Filter

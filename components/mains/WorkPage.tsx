@@ -6,6 +6,7 @@ import Layout from '../common/Layout'
 import { useContentState } from '../../hooks/RootStoreProvider'
 import { runInAction } from 'mobx'
 import { useEffect } from 'react'
+import Subscribe from '../common/Subscribe'
 
 const WorkPage = observer(({ dt }: { dt: any }) => {
   const content = useContentState()
@@ -19,6 +20,7 @@ const WorkPage = observer(({ dt }: { dt: any }) => {
     <>
       <Layout withVideo={false}>
         <VacanciesContent works={content.workC} />
+        <Subscribe />
       </Layout>
       <Filter
         params={[{ title: 'Category', list: content.filters }] || null}

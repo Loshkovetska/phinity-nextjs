@@ -3,19 +3,18 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  compress: false,
   reactStrictMode: false,
-  swcMinify: true,
+  swcMinify: false,
   images: {
     domains: [
       'phinitytherapy.com',
-      'https://phinitytherapy.com/react',
+      'https://phinitytherapy.com/admin/react',
       '188.114.97.13:443',
     ],
-  },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
   },
   webpack(config) {
     config.module.rules.push({
@@ -23,7 +22,7 @@ module.exports = {
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
     })
-
+    config.optimization.minimize = false
     return config
   },
 }

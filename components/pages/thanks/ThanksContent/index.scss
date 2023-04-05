@@ -15,6 +15,10 @@
     align-items: center;
   }
 
+  .therapist-intro__vector {
+    z-index: 0;
+  }
+
   &__title {
     font-family: 'MADE Mirage';
     font-style: normal;

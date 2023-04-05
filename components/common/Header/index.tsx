@@ -7,21 +7,18 @@ import GlobalState, {
   changeMenuState,
   changeSearchState,
 } from '../../../stores/GlobalState'
-import '../../../styles/header.module.scss'
 import { observer } from 'mobx-react'
-import { Fragment, useEffect, useState } from 'react'
 import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../hooks/RootStoreProvider'
+import Link from 'next/link'
 
 const Header = observer(() => {
   const { width } = useWindowDimensions()
 
-  const { menu } = useContentState()
-
-  const linksL = GlobalState.links
+  const { menu, links } = useContentState()
   let main = ''
-  if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+  if (links) {
+    main = links?.find((l: any) => l.id == 2)?.link
   }
 
   return (
@@ -33,10 +30,9 @@ const Header = observer(() => {
           <Close onClick={changeMenuState} className="header__menu-but" />
         )}
       </div>
-      <Logo
-        className="header__logo"
-        onClick={() => (window.location.href = main)}
-      />
+      <a href={`${main.includes('/') ? main : '/' + main}`}>
+        <Logo className="header__logo" />
+      </a>
       <Navigation />
       <div className="header__search">
         {GlobalState.isSearchOpen && width <= 1024 ? (

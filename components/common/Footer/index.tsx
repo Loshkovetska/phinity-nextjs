@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react'
 import { useEffect, useState } from 'react'
 import classNames from 'classnames'
-import GlobalState from '../../../stores/GlobalState'
-import ContentStore from '../../../stores/ContentStore'
 import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
 import ImageComponent from '../ImageComponent'
 
@@ -35,17 +33,14 @@ const Footer = observer(() => {
     }, 300)
   }, [])
 
-  const linksL = GlobalState.links
-  let main = ''
-  if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+  const { links } = useContentState()
+  let main = '',
+    therapist = ''
+  if (links) {
+    main = links?.find((l: any) => l.id == 2)?.link
+    therapist = links?.find((l: any) => l.id == 268)?.link
   }
 
-  const links = GlobalState.links
-  let therapist: any = null
-  if (links) {
-    therapist = links.find((l: any) => l.id == 268)
-  }
   return (
     <footer className="footer">
       <div className="footer__row">
@@ -76,12 +71,11 @@ const Footer = observer(() => {
         </div>
         <div className="footer__col w50p mr0">
           <div className="footer__sub-title ">{(menu as any).navTitle}</div>
-          {}
           {(menu as any).nav?.map((n: any, i: number) => (
             <a
               href={
-                n.link.includes(therapist.link)
-                  ? therapist.link + '/' + therapists[0].link
+                n.link.includes(therapist)
+                  ? therapist + '/' + therapists[0].link
                   : n.link
               }
               className="footer__text link"
@@ -110,8 +104,10 @@ const Footer = observer(() => {
                 className="footer__text social"
                 href={f.link}
                 target={'__blank'}
+                rel="noreferrer"
+                title={f.link}
               >
-                <ImageComponent src={f.icon} alt={f.link} />
+                <ImageComponent src={f.icon} alt={f.alt} />
               </a>
             ))}
           </div>

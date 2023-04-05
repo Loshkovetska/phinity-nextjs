@@ -9,6 +9,7 @@ import Button from '../../../common/Button'
 import CheckBox from '../../../common/CheckBox'
 import { DOMAIN } from '../../../../mocks/doman'
 import { useRouter } from 'next/router'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 const CVForm = observer(({ job }: { job: any }) => {
   const { pathname } = useRouter()
 
@@ -30,9 +31,9 @@ const CVForm = observer(({ job }: { job: any }) => {
   }
 
   let thanks = ''
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   if (linksL) {
-    thanks = linksL.find((l: any) => l.id == 635).link
+    thanks = linksL.find((l: any) => l.id == 635)?.link
   }
 
   const submit = () => {
@@ -89,12 +90,12 @@ const CVForm = observer(({ job }: { job: any }) => {
     })
   }, [job])
 
-  const links = GlobalState.links
+  const { links } = useContentState()
   let privacy = '',
     terms = ''
   if (links) {
-    privacy = links.find((l: any) => l.id == 3).link
-    terms = links.find((l: any) => l.id == 591).link
+    privacy = links.find((l: any) => l.id == 3)?.link
+    terms = links.find((l: any) => l.id == 591)?.link
   }
 
   if (!job) return <></>
@@ -201,9 +202,7 @@ const CVForm = observer(({ job }: { job: any }) => {
           ></div>
           <div
             className="cv-form__link mb56"
-            onClick={() =>
-              (window.location.href = `mailto:${job.form.email}`)
-            }
+            onClick={() => (window.location.href = `mailto:${job.form.email}`)}
           >
             {job.form.email}
           </div>

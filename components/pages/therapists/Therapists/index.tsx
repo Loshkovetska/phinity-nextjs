@@ -103,13 +103,12 @@ const Therapists = observer(() => {
     }, 1000)
   }, [width, scrollY])
 
-  const { therapistsC: therapists } = content
-  const linksL = GlobalState.links
+  const { therapistsC: therapists, links:linksL } = content
   let therapistsL = '',
     main = ''
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    therapistsL = linksL.find((l: any) => l.id == 268).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    therapistsL = linksL.find((l: any) => l.id == 268)?.link
   }
 
   const links = [
@@ -163,7 +162,7 @@ const Therapists = observer(() => {
               href={`${therapistsL}/${i.link}`}
             >
               <div className="therapists__item-img">
-                <img src={i.img} alt={i?.name} />
+                <img src={i.img.replaceAll('admin.', '')} alt={i?.alt} />
               </div>
               <div className="therapists__item-info">
                 <div className="therapists__item-title">{i.name}</div>

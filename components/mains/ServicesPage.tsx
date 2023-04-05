@@ -12,6 +12,7 @@ import PopularPosts from '../pages/video/PopularPosts'
 import PopularVideos from '../pages/videos/PopularVideos'
 import Layout from '../common/Layout'
 import { useContentState } from '../../hooks/RootStoreProvider'
+import Subscribe from '../common/Subscribe'
 
 const ServicesPage = observer(({ dt }: { dt: any }) => {
   const content = useContentState()
@@ -23,9 +24,9 @@ const ServicesPage = observer(({ dt }: { dt: any }) => {
     })
   }, [content.services])
 
-  const linksL = GlobalState.links
+  const linksL = content.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
 
   const links = [
@@ -60,6 +61,7 @@ const ServicesPage = observer(({ dt }: { dt: any }) => {
         />
         <PopularVideos content={content.servicesC.video} />
         <BookBlock />
+        <Subscribe />
       </Layout>
       <Filter
         params={content.filters}

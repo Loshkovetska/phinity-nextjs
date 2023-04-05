@@ -53,7 +53,7 @@ const Servives = observer(({ dt }: { dt: any }) => {
         <div className="services__list">
           {dt.imgs.map((i: any, id: number) => (
             <div className="services__item" key={id}>
-              <ImageComponent src={i} alt={dt.title} />
+              <ImageComponent src={i.src} alt={i.alt} />
             </div>
           ))}
         </div>

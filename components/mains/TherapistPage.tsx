@@ -9,6 +9,7 @@ import { observer } from 'mobx-react'
 import { Issue } from '../../api/mocks/issues'
 import { Service } from '../../api/mocks/services'
 import Layout from '../common/Layout'
+import Subscribe from '../common/Subscribe'
 
 const TherapistPage = observer(({ dt }: { dt: any }) => {
   let issues: Array<Issue> = [],
@@ -48,6 +49,7 @@ const TherapistPage = observer(({ dt }: { dt: any }) => {
       <Reviews dt={dt.therapistC.reviews} />
       <Contact therapist={dt.therapistC} />
       <BookBlock />
+      <Subscribe />
     </Layout>
   )
 })

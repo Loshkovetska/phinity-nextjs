@@ -10,7 +10,8 @@ export type Therapist = {
   experience: number
   timeofWork: string
   location: string
-  link?:string
+  link?: string
+  alt?:string
 }
 
 

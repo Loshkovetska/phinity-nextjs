@@ -71,9 +71,16 @@
     row-gap: 56px;
     margin-top: 56px;
 
+    .videos__item {
+      opacity: 1;
+    }
+
     &.slider-videos {
       display: block;
       grid-template-columns: none;
+      .videos__item {
+        opacity: 1;
+      }
 
       // .slick-slide {
       //   width: calc(413px + 20px);
@@ -118,7 +125,7 @@
     width: 100%;
     text-decoration: none;
     transition: 0.5s opacity cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    opacity: 0;
+    opacity: 1;
 
     &.animated {
       opacity: 1;

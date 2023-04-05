@@ -1,0 +1,9 @@
+# undefined
+User-agent: undefined
+Disallow: /clear
+
+# Host
+Host: https://phinitytherapy.com/
+
+# Sitemaps
+Sitemap: https://phinitytherapy.com/sitemap.xml

@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import { observer } from 'mobx-react'
 
 import GlobalState, { changeMenuState } from '../../../stores/GlobalState'
-import '../../../styles/navigation.module.scss'
 
 import Arrow from '../../../assets/caret-right.svg'
 
@@ -15,7 +14,7 @@ import { useContentState } from '../../../hooks/RootStoreProvider'
 const Navigation = observer(() => {
   const { width } = useWindowDimensions()
   const { pathname } = useRouter()
-  const { menu, therapists } = useContentState()
+  const { menu, therapists, links } = useContentState()
 
   useEffect(() => {
     if (GlobalState.isMenuOpen) {
@@ -23,10 +22,9 @@ const Navigation = observer(() => {
     } else document.body.classList.remove('hidden')
   }, [GlobalState.isMenuOpen])
 
-  const links = GlobalState.links
-  let therapist: any = null
+  let therapist = ''
   if (links) {
-    therapist = links.find((l: any) => l.id == 268)
+    therapist = links?.find((l: any) => l.id == 268).link
   }
   return (
     <nav className={classNames('navigation', GlobalState.isMenuOpen && 'open')}>
@@ -34,8 +32,8 @@ const Navigation = observer(() => {
         <a
           key={i}
           href={
-            m.link.includes(therapist?.link)
-              ? therapist.link + '/' + therapists[0].link
+            m.link.includes(therapist)
+              ? therapist + '/' + therapists[0].link
               : m.link
           }
           className={classNames(
@@ -59,7 +57,7 @@ const Navigation = observer(() => {
             onClick={() => window.open(f.link, '__blank')}
           >
             <span>
-              <ImageComponent src={f.icon} alt={f.link} />
+              <ImageComponent src={f.icon} alt={f.alt} />
             </span>
             {f.title}
           </div>

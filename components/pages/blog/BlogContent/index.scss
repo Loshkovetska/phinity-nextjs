@@ -22,6 +22,24 @@
     }
   }
 
+  &__aside-list {
+    .blogs__item {
+      .blogs__item-date > .blogs__item-time {
+        display: inline !important;
+      }
+      .blogs__item-cat {
+        flex-wrap: wrap;
+        padding-right: 24px;
+      }
+
+      &-bottom {
+        .blogs__item-time {
+          display: none;
+        }
+      }
+    }
+  }
+
   &__title {
     font-family: 'MADE Mirage';
     font-style: normal;
@@ -126,6 +144,14 @@
       width: 100%;
       margin-left: 0;
       opacity: 0;
+      .blogs__item-date,
+      .blogs__item-bottom {
+        display: none;
+      }
+
+      .blogs__item-top {
+        margin: 0px 0 24px;
+      }
 
       &.animated {
         opacity: 1;

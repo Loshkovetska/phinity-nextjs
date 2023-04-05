@@ -11,6 +11,7 @@ export type Post = {
   views?: number
   refs?: Array<any>
   link?: string
+  alt?: string
 }
 
 export type Author = {

@@ -40,6 +40,7 @@
     .videos__item {
       min-width: 413px;
       max-width: 413px;
+      opacity: 1;
       &:not(:last-child) {
         margin-right: 20px;
       }
@@ -47,6 +48,8 @@
     .blogs__item {
       min-width: 620px;
       max-width: 620px;
+      opacity: 1;
+
       &:not(:last-child) {
         margin-right: 20px;
       }
@@ -67,10 +70,12 @@
     width: 100%;
     // min-width: 413px;
     // width: 413px;
+    opacity: 1;
   }
 
   .blogs__item {
     width: 100%;
+    opacity: 1;
   }
 
   // .slick-slide {
@@ -112,8 +117,6 @@
     opacity: 1;
     visibility: visible;
   }
-
-
 
   @media (max-width: 1120px) {
     &__top {

@@ -9,6 +9,7 @@ import { useWindowDimensions } from '../../hooks/getWindowDimensions'
 import Layout from '../common/Layout'
 import { useContentState } from '../../hooks/RootStoreProvider'
 import { useEffect, useState } from 'react'
+import Subscribe from '../common/Subscribe'
 
 const BlogPage = observer(({ dt }: { dt: any }) => {
   const { width } = useWindowDimensions()
@@ -36,7 +37,8 @@ const BlogPage = observer(({ dt }: { dt: any }) => {
           <Reviews dt={content.blog?.reviews} />
           {width > 1024 && <BookBlock />}
           <Accreditation accreditation={content.blog?.accreditation} />
-          <div className="space-block"></div>
+          <Subscribe />
+           {/* <div className="space-block"></div> */}
         </>
       )}
     </Layout>

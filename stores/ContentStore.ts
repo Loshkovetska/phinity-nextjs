@@ -391,17 +391,51 @@ export const getSeo = async (
   id: string | number,
   type?: string | undefined | null,
 ) => {
-  const formData = new FormData()
-  formData.append('status', 'meta')
-  formData.append('slug', id.toString())
-  type && formData.append('type', type ? type.toString() : '')
+  const section =
+    type == 'blog'
+      ? 'blog'
+      : type &&
+        ['issues', 'services', 'vacancies', 'videos', 'therapists'].includes(
+          type,
+        )
+      ? type
+      : 'pages'
 
-  const request = await fetch(DOMAIN + 'react/', {
-    method: 'POST',
-    body: formData,
-  })
+  const request = await fetch(
+    `https://admin.phinitytherapy.com/wp-json/wp/v2/${section}/${id}`,
+  )
 
   const response = await request.json()
 
-  return response
+  return response.yoast_head_json
 }
+
+export const getPlugins = async () => {
+  try {
+    let response = await fetch(
+      `https://admin.phinitytherapy.com/wp-json/hs/v2/header`,
+    )
+
+    let res = await response.json()
+
+    const result = res.match(
+      /(<script(.*){1,}([\n\t\w.\s={}"":/>();!'+&&||[\],\\\-\?\*<#@]{1,})<\/script>)/g,
+    )
+    //(/(<script.*(\n\s*.*){1,}<\/script>)/g)
+
+    const fd = new FormData()
+    fd.append('status', 'plugin')
+    let response1 = await fetch(`${DOMAIN}react/`, {
+      method: 'POST',
+      body: fd,
+    })
+
+    let res1 = await response1.text()
+
+    return result.join('') + res1
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+

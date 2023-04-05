@@ -1,16 +1,14 @@
 import { observer } from 'mobx-react'
-import Vectors from '../../../../assets/ther-vectors.svg'
 import Ellipse1 from '../../../../assets/Ellipse 67.svg'
 import Hands from '../../../../assets/Hands.svg'
 import Button from '../../../common/Button'
-import GlobalState from '../../../../stores/GlobalState'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const ThanksContent = observer(() => {
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let main = ''
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
 
   const { thanks } = useContentState()

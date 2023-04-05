@@ -69,8 +69,8 @@ const Phylosophy = observer(({ phylosophy}:{phylosophy:any}) => {
           </div>{' '}
           <img
             className="phylosophy__img"
-            src={phylosophy.cols[0].img}
-            alt={phylosophy.title}
+            src={phylosophy.cols[0].img.replaceAll('admin.', '')}
+            alt={phylosophy.cols[0].alt}
           />
           <div
             className="phylosophy__text"
@@ -88,8 +88,8 @@ const Phylosophy = observer(({ phylosophy}:{phylosophy:any}) => {
           ></div>
           <img
             className="phylosophy__img"
-            src={phylosophy.cols[1].img}
-            alt={phylosophy.title}
+            src={phylosophy.cols[1].img.replaceAll('admin.', '')}
+            alt={phylosophy.cols[1].alt}
           />
         </div>{' '}
       </div>

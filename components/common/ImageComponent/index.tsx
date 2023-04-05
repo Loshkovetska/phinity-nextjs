@@ -45,7 +45,12 @@ const ImageComponent = ({
   //   isLoaded.current = true
   // }, [src])
   return (
-    <img src={src || ''} alt={alt} onClick={onClick} className={classStr} />
+    <img
+      src={src?.replaceAll('admin.', '') || ''}
+      alt={alt}
+      onClick={onClick}
+      className={classStr}
+    />
   )
 }
 

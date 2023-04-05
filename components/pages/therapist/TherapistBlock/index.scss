@@ -1,5 +1,5 @@
 .therapist-block {
-  padding-top: 81px;
+  padding-top: 70px;
   width: 100%;
   position: relative;
   z-index: 1;
@@ -47,6 +47,7 @@
     left: -80px;
     top: 100px;
     transition: 5s cubic-bezier(0.19, 1, 0.22, 1) transform;
+    width: 481px;
   }
 
   &__item {
@@ -264,6 +265,10 @@
       &-text {
         flex-grow: 0;
       }
+    }
+
+    &__vector {
+      max-width: 300px;
     }
 
     &__sub {

@@ -61,7 +61,7 @@ const AboutService = observer(
             </div>
             <div className="about-service__img">
               <div className="about-service__mask">
-                <ImageComponent src={dt.img} alt={dt.title} />
+                <ImageComponent src={dt.img} alt={dt.alt||""} />
               </div>
             </div>
           </div>

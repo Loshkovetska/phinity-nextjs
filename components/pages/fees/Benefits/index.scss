@@ -69,6 +69,7 @@
     right: -124px;
     transition: 3s ease-out all;
     transform: rotateX(180deg) rotateY(180deg);
+    width: 481px;
   }
 
   &__row-text {
@@ -254,8 +255,8 @@
     }
 
     &__vector {
-      width: 531.59px;
-      height: 964.04px;
+      width: 300px;
+      height: auto;
       right: auto;
       transition: 2.5s ease-out all;
       transform: rotateX(180deg) rotateY(0);

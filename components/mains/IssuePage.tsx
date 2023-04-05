@@ -17,10 +17,12 @@ import GlobalState from '../../stores/GlobalState'
 import { useWindowDimensions } from '../../hooks/getWindowDimensions'
 import Layout from '../common/Layout'
 import { getTherapists } from '../../stores/DBStore'
+import { useContentState } from '../../hooks/RootStoreProvider'
+import Subscribe from '../common/Subscribe'
 
 const IssuePage = observer(({ data }: { data: any }) => {
   const { width } = useWindowDimensions()
-
+  const { links: linksL } = useContentState()
   const [dt, setDt] = useState([])
   useEffect(() => {
     getTherapists().then((res) => {
@@ -30,11 +32,11 @@ const IssuePage = observer(({ data }: { data: any }) => {
 
   let main = '',
     issuesL = ''
-  const linksL = GlobalState.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    issuesL = linksL.find((l: any) => l.id == 266).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    issuesL = linksL.find((l: any) => l.id == 266)?.link
   }
+
   const links = [
     {
       title: data.issueC.intro.mainPageTitle,
@@ -91,6 +93,7 @@ const IssuePage = observer(({ data }: { data: any }) => {
         <PopularVideos content={data.issueC.video} />
         <References dt={data.issueC.refs} />
         <BookBlock />
+        <Subscribe />
       </Layout>
     </>
   )

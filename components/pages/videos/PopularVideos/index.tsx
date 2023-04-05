@@ -26,10 +26,10 @@ const PopularVideos = observer(({ content }: { content: any }) => {
     }
   }, [dt.popvideos])
 
-  const links = GlobalState.links
+  const { links } = useContentState()
   let videos = ''
   if (links) {
-    videos = links.find((l: any) => l.id == 644).link
+    videos = links.find((l: any) => l.id == 644)?.link
   }
 
   if (!dt.popvideos?.length) return <></>

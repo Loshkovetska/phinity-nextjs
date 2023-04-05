@@ -1,5 +1,14 @@
 .pagination {
   margin-top: 56px;
+  &-more {
+    transition: 0.5s ease-out all;
+    width: 24px;
+
+    @media (max-width: 768px) {
+      width: 16px;
+    }
+  }
+
   &-arrow {
     cursor: pointer;
     width: 48px;
@@ -143,12 +152,20 @@
       &:hover {
         background: #222426;
       }
+      .pagination-more {
+        filter: invert(100%) sepia(13%) saturate(420%) hue-rotate(320deg)
+          brightness(109%) contrast(87%);
+      }
     }
     cursor: pointer;
     &:hover {
       background: #222426;
       path {
         fill: #efebe4;
+      }
+      .pagination-more {
+        filter: invert(100%) sepia(13%) saturate(420%) hue-rotate(320deg)
+          brightness(109%) contrast(87%);
       }
     }
   }
@@ -159,14 +176,15 @@
     bottom: 40px;
     padding: 12px 8px;
     gap: 10px;
-    min-width: 162px;
-    max-width: 224px;
+    width: fit-content;
+    max-width: 200px;
     background: #ffffff;
     box-shadow: 0px 0px 20px rgba(0, 28, 78, 0.04);
-    &-item {
+    .pagination-page {
       border-radius: 50%;
       width: 32px;
       height: 32px;
+      min-width: 32px;
       color: #222426;
       background: #ffffff;
       border-radius: 50%;

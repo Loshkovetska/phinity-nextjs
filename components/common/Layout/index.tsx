@@ -9,6 +9,8 @@ import VideoBox from '../VideoBox'
 import ScrollDown from '../../../assets/post/arrow.svg'
 import classNames from 'classnames'
 import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
+import { useRouter } from 'next/router'
+import { useContentState } from '../../../hooks/RootStoreProvider'
 
 const Layout = observer(
   ({
@@ -30,7 +32,6 @@ const Layout = observer(
   }) => {
     const { width } = useWindowDimensions()
     const ref = useRef<any>(null)
-
     const [showFooter, setFooter] = useState(false)
     const [showContent, setShow] = useState(false)
     useEffect(() => {
@@ -48,7 +49,7 @@ const Layout = observer(
         <div ref={ref}></div>
         <div
           className={classNames(
-            'smooth',
+            'smooth ',
             !showContent && 'hidden-content',
             !isTranslate && 'hidden-scroll',
             isFixed && 'hidden',

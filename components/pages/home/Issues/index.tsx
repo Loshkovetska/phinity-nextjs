@@ -16,6 +16,7 @@ import classNames from 'classnames'
 import { Issue } from '../../../../api/mocks/issues'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const Vector = ({ id }: { id: number }) => {
   const vectors = [
@@ -82,10 +83,10 @@ const Issues = observer(
       }
     }, [scrollY, width])
 
-    const links = GlobalState.links
+    const {links} = useContentState()
     let issues = ''
     if (links) {
-      issues = links.find((l: any) => l.id == 266).link
+      issues = links.find((l: any) => l.id == 266)?.link
     }
     let subarr: any = []
 

@@ -11,10 +11,10 @@ import BlogItem from '../../../common/BlogItem'
 const PopularPosts = observer(({ content }: { content: any }) => {
   const { width } = useWindowDimensions()
   const dt = useContentState()
-  const links = GlobalState.links
+  const links = dt.links
   let blog = ''
   if (links) {
-    blog = links.find((l: any) => l.id == 272).link
+    blog = links.find((l: any) => l.id == 272)?.link
   }
 
   if (!dt?.popposts) return <></>
@@ -36,7 +36,7 @@ const PopularPosts = observer(({ content }: { content: any }) => {
       </div>
       <CheckerItemsInsideCont
         container=".popular-posts"
-        child=".popular-posts .blogs__item"
+        child=".popular-posts .blogs__item "
         slider={
           <div className="popular-videos__list">
             <CustomSlider

@@ -7,11 +7,12 @@ import { Video as VideoType } from '../../../../api/mocks/videos'
 import RightClickCatcher from '../../../common/RightClickCatcher'
 import CheckerItemsInsideCont from '../../../common/CheckerItemsInsideCont'
 import CustomSlider from '../../../common/CustomSlider'
-import { useRouter } from 'next/router'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import VideoPreload from '../../../common/VideoPreload'
 import ImageComponent from '../../../common/ImageComponent'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
+import Link from 'next/link'
 
 const Videos = observer(
   ({ arr, dt }: { arr: Array<VideoType> | null; dt: any }) => {
@@ -60,10 +61,10 @@ const Videos = observer(
 
     if (!arr || !arr.length) return <></>
 
-    const linksL = GlobalState.links
+    const { links: linksL } = useContentState()
     let videos = ''
     if (linksL) {
-      videos = linksL.find((l: any) => l.id == 644).link
+      videos = linksL.find((l: any) => l.id == 644)?.link
     }
 
     return (
@@ -125,7 +126,7 @@ const Videos = observer(
                     : 3
                 }
               >
-                {arr?.slice(0, 20)?.map((v, ind) => (
+                {arr?.slice(0, 5)?.map((v, ind) => (
                   <VideoComponent item={v} key={ind} />
                 ))}
               </CustomSlider>
@@ -133,7 +134,7 @@ const Videos = observer(
           }
           list={
             <div className="videos__list">
-              {arr?.slice(0, 20)?.map((v, ind) => (
+              {arr?.slice(0, 5)?.map((v, ind) => (
                 <VideoComponent item={v} key={ind} />
               ))}
             </div>
@@ -158,17 +159,16 @@ const Videos = observer(
 export default Videos
 
 export const VideoComponent = observer(({ item }: { item: any }) => {
-  const { pathname } = useRouter()
-
-  const links = GlobalState.links
+  const { links } = useContentState()
   let videos = ''
   if (links) {
-    videos = links.find((l: any) => l.id == 644).link
+    videos = links.find((l: any) => l.id == 644)?.link
   }
+
   return (
-    <a className="videos__item" href={`${videos}/${item.link}`}>
+    <Link href={`${videos}/${item.link}`} className="videos__item">
       <div className="videos__item-img">
-        <ImageComponent src={item.poster} alt={pathname} />
+        <ImageComponent src={item.poster} alt={item.alt} />
         <RightClickCatcher
           children={
             <VideoPreload
@@ -180,8 +180,14 @@ export const VideoComponent = observer(({ item }: { item: any }) => {
         />
         <Video className="videos__item-icon" />
       </div>
-      <div className="videos__item-title">{item.title}</div>
-      <div className="videos__item-desc">{item.text}</div>
-    </a>
+      <div
+        className="videos__item-title"
+        dangerouslySetInnerHTML={{ __html: item.title }}
+      ></div>
+      <div
+        className="videos__item-desc"
+        dangerouslySetInnerHTML={{ __html: item.text }}
+      ></div>
+    </Link>
   )
 })

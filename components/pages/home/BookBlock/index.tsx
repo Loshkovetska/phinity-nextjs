@@ -8,9 +8,11 @@ import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import Vector from '../../../../assets/Vector 6.svg'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 const BookBlock = observer(() => {
-  const { pathname } = useRouter()
+  const { asPath } = useRouter()
   const { width, height } = useWindowDimensions()
   const { scrollY } = useWindowScroll()
+
+  const { links, book } = useContentState()
 
   useEffect(() => {
     const smooth = document.querySelector('.smooth')
@@ -31,10 +33,13 @@ const BookBlock = observer(() => {
     }
   }, [scrollY, height])
 
-  const { book }: any = useContentState();
+  let blog = ''
+  if (links) {
+    blog = links.find((l: any) => l.id == 272)?.link
+  }
   return (
     <section
-      className={classNames('book-block', pathname.includes('blog') && 'blog')}
+      className={classNames('book-block', asPath.includes(blog) && 'blog')}
     >
       <div className="book-block__container">
         <Vector />

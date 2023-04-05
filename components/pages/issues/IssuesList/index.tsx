@@ -204,10 +204,10 @@ const IssuesList = observer(({ issues }: { issues: Array<Issue> }) => {
     }, 1000)
   }, [scrollY])
 
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let issuesL = ''
   if (linksL) {
-    issuesL = linksL.find((l: any) => l.id == 266).link
+    issuesL = linksL.find((l: any) => l.id == 266)?.link
   }
   return (
     <section className="issues-list">

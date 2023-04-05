@@ -18,7 +18,7 @@ const VideoPreload = ({
   const isPosterLoaded = useRef<any>(false),
     isVideoLoaded = useRef<any>(false)
 
-  const [videoSrc, setSrc] = useState(null)
+  const [videoSrc, setSrc] = useState<any>(null)
   const [videoPoster, setPoster] = useState(null)
   // useEffect(() => {
   //   if (isPosterLoaded.current || !poster) return
@@ -44,7 +44,8 @@ const VideoPreload = ({
 
   useEffect(() => {
     if (isVideoLoaded.current || !src) return
-    if (src.includes('youtube')) return
+
+    if (!src.includes('phinitytherapy.com')) return
     fetch(src)
       .then((fetchResponse) => {
         if (fetchResponse.ok) {
@@ -73,11 +74,11 @@ const VideoPreload = ({
       autoPlay={isAutoPlay}
       muted={isMuted}
       controls={false}
-      src={videoSrc || ''}
+      src={videoSrc || src||''}
       playsInline
       loop={isLoop}
     >
-      <source src={videoSrc || ''}></source>
+      <source src={videoSrc || src||''}></source>
     </video>
   )
 }

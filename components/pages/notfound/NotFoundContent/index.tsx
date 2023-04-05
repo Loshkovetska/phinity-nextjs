@@ -3,15 +3,12 @@ import Ellipse1 from '../../../../assets/Ellipse 67.svg'
 import Hands from '../../../../assets/Hands.svg'
 import Button from '../../../common/Button'
 import GlobalState from '../../../../stores/GlobalState'
+import { useRouter } from 'next/router'
 
 const NotFoundContent = observer(({ nofound }: { nofound: any }) => {
   if (!nofound) return <></>
 
-  const linksL = GlobalState.links
-  let main = ''
-  if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-  }
+  const router = useRouter()
   return (
     <section className="thanks ">
       <Ellipse1 className="therapist-intro__vector w31" />
@@ -40,13 +37,14 @@ const NotFoundContent = observer(({ nofound }: { nofound: any }) => {
             classname="black-border p18p40"
             text={nofound.backButton}
             click={() => {
-              window.history.go(-1)
+              router.back()
+              // window.history.go(-1)
             }}
           />
           <Button
             classname="blue p18p40"
             text={nofound.homeButton}
-            click={() => (window.location.href = main)}
+            click={() => (window.location.href = '/')}
           />
         </div>
       </div>

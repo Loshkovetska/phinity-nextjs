@@ -51,10 +51,10 @@ const RelatedPosts = observer(({ title }: { title: string }) => {
 
   if (!posts?.length) return <></>
 
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let blog = ''
   if (linksL) {
-    blog = linksL.find((l: any) => l.id == 272).link
+    blog = linksL.find((l: any) => l.id == 272)?.link
   }
   return (
     <section className="related-posts">

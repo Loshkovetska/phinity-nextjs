@@ -1,14 +1,12 @@
 import { observer } from 'mobx-react'
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Button from '../../../common/Button'
 import Warn from '../../../../assets/contact/warn.svg'
 import User from '../../../../assets/contact/Component 95.svg'
 import SMS from '../../../../assets/contact/Component 95 (1).svg'
 import Tel from '../../../../assets/contact/Component 95 (2).svg'
-import { Link } from 'react-router-dom'
-import GlobalState from '../../../../stores/GlobalState'
 import { DOMAIN } from '../../../../mocks/doman'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const Contact = observer(({ dt }: { dt: any }) => {
   const [st, setState] = useState({
@@ -30,12 +28,11 @@ const Contact = observer(({ dt }: { dt: any }) => {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
   }
 
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let thanks = ''
   if (linksL) {
-    thanks = linksL.find((l: any) => l.id == 635).link
+    thanks = linksL.find((l: any) => l.id == 635)?.link
   }
-
   const submit = () => {
     let errs = {
       name: st.name.length ? '' : 'Fill field',
@@ -92,10 +89,10 @@ const Contact = observer(({ dt }: { dt: any }) => {
     })
   }, [])
 
-  const links = GlobalState.links
+  const { links } = useContentState()
   let term = ''
   if (links) {
-    term = links.find((l: any) => l.id == 591).link
+    term = links.find((l: any) => l.id == 591)?.link
   }
 
   if (!dt) return <></>

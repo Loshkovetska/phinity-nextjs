@@ -1,22 +1,20 @@
 import { observer } from 'mobx-react'
 import PageLinks from '../../../common/PageLinks'
-import DBStore from '../../../../stores/DBStore'
-import GlobalState from '../../../../stores/GlobalState'
-import { useEffect, useState } from 'react'
 import ReviewWidget from '../../../common/ReviewWidget'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 import ImageComponent from '../../../common/ImageComponent'
+import Vector from '../../../../assets/Ellipse 67.svg'
 const Intro = observer(({ therapist }: { therapist: any }) => {
   const content = useContentState()
   const { width } = useWindowDimensions()
 
   let main = '',
     thera = ''
-  const linksL = GlobalState.links
+  const linksL = content.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    thera = linksL.find((l: any) => l.id == 268).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    thera = linksL.find((l: any) => l.id == 268)?.link
     if (content.therapists.length == 1) {
       thera = thera + '/' + content.therapists[0].link
     }
@@ -39,41 +37,13 @@ const Intro = observer(({ therapist }: { therapist: any }) => {
 
   return (
     <section className="therapist-intro  ">
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w31"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w25"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w71"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w72"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w120"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w185"
-      />
-      <img
-        src="/Ellipse 67.svg"
-        alt={content.therapist?.name}
-        className="therapist-intro__vector w254"
-      />
+      <Vector className="therapist-intro__vector w31" />
+      <Vector className="therapist-intro__vector w25" />
+      <Vector className="therapist-intro__vector w71" />
+      <Vector className="therapist-intro__vector w72" />
+      <Vector className="therapist-intro__vector w120" />
+      <Vector className="therapist-intro__vector w185" />
+      <Vector className="therapist-intro__vector w254" />
       <div className="therapist-intro__container">
         <PageLinks links={links} />
         <div className="therapist-intro__content">
@@ -102,7 +72,7 @@ const Intro = observer(({ therapist }: { therapist: any }) => {
           <div className="therapist-intro__img ">
             <ImageComponent
               src={content.therapist?.img}
-              alt={content.therapist?.name}
+              alt={content.therapist?.alt}
             />
             <img
               src="/ther-vectors.svg"

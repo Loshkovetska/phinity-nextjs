@@ -11,11 +11,12 @@ import AboutService from '../pages/service/AboutService'
 import AboutSphere from '../pages/service/AboutSphere'
 import TherapyHelp from '../pages/service/TherapyHelp'
 import Intro from '../pages/services/Intro'
-import DBStore, {
-  getTherapists} from '../../stores/DBStore'
+import DBStore, { getTherapists } from '../../stores/DBStore'
 import GlobalState, { getReviewsIO } from '../../stores/GlobalState'
 import { useWindowDimensions } from '../../hooks/getWindowDimensions'
 import Layout from '../common/Layout'
+import { useContentState } from '../../hooks/RootStoreProvider'
+import Subscribe from '../common/Subscribe'
 
 const ServicePage = observer(({ data }: { data: any }) => {
   const { width } = useWindowDimensions()
@@ -29,10 +30,10 @@ const ServicePage = observer(({ data }: { data: any }) => {
 
   let main = '',
     servL = ''
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    servL = linksL.find((l: any) => l.id == 264).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    servL = linksL.find((l: any) => l.id == 264)?.link
   }
   const links = [
     {
@@ -89,6 +90,7 @@ const ServicePage = observer(({ data }: { data: any }) => {
         <Videos arr={data.videos} dt={data.serviceC.video} />
         <References dt={data.serviceC.refs} />
         <BookBlock />
+        <Subscribe/>
       </Layout>
     </>
   )

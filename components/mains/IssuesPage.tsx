@@ -13,6 +13,7 @@ import { runInAction } from 'mobx'
 import { useWindowDimensions } from '../../hooks/getWindowDimensions'
 import Layout from '../common/Layout'
 import { useContentState } from '../../hooks/RootStoreProvider'
+import Subscribe from '../common/Subscribe'
 
 const IssuesPage = observer(({ dt }: { dt: any }) => {
   const { width } = useWindowDimensions()
@@ -20,10 +21,10 @@ const IssuesPage = observer(({ dt }: { dt: any }) => {
 
   let main = '',
     issuesL = ''
-  const linksL = GlobalState.links
+  const linksL = content.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    issuesL = linksL.find((l: any) => l.id == 266).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    issuesL = linksL.find((l: any) => l.id == 266)?.link
   }
 
   const links = [
@@ -65,6 +66,7 @@ const IssuesPage = observer(({ dt }: { dt: any }) => {
         />
         <Videos arr={content.videos} dt={content.issuesC.video} />
         <BookBlock />
+        <Subscribe />
       </Layout>
       <Filter
         params={content.filters}

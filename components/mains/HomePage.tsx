@@ -13,6 +13,7 @@ import { observer } from 'mobx-react'
 import Videos from '../../components/pages/blog/Videos'
 import Layout from '../common/Layout'
 import { getTherapists } from '../../stores/DBStore'
+import Subscribe from '../common/Subscribe'
 const HomePage = observer(
   ({
     home,
@@ -35,6 +36,7 @@ const HomePage = observer(
         setDt(res)
       })
     }, [])
+
     return (
       <Layout withScroll>
         <Intro intro={home.intro} />
@@ -52,6 +54,7 @@ const HomePage = observer(
         <Blogs arr={posts} dt={home.blog} />
         <Videos arr={videos} dt={home.video} />
         <BookBlock />
+        <Subscribe />
       </Layout>
     )
   },

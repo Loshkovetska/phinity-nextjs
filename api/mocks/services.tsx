@@ -3,4 +3,5 @@ export type Service = {
   title: string
   img: string
   link?: string
+  alt?:string
 }

@@ -62,7 +62,7 @@ const Accreditation = observer(({ accreditation }: { accreditation: any }) => {
         <div className="accreditation__list">
           {accreditation?.imgs.map((i: any, id: number) => (
             <div className="accreditation__item" key={id}>
-              <ImageComponent src={i} alt={accreditation?.title} />
+              <ImageComponent src={i.src} alt={i.alt} />
             </div>
           ))}
         </div>

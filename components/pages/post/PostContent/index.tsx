@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react'
-import { Link, useNavigate } from 'react-router-dom'
 import { Post } from '../../../../api/mocks/posts'
-import { outputFullDate } from '../../../../methods/output'
 import DBStore, { getPost } from '../../../../stores/DBStore'
 import Button from '../../../common/Button'
 import PageLinks from '../../../common/PageLinks'
@@ -11,94 +9,25 @@ import Setting from '../../../../assets/mob-sett.svg'
 import Close from '../../../../assets/close.svg'
 import Vector from '../../../../assets/home-area.svg'
 import { useEffect, useState } from 'react'
-import GlobalState from '../../../../stores/GlobalState'
 import classNames from 'classnames'
 import { PostArrow } from '../../video/VideoIntro'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
+import DateTime from '../../../common/DateTime'
 
 const PostContent = observer(() => {
   const [showFilter, setFilter] = useState(false)
   const { width, path } = useWindowDimensions()
   const content = useContentState()
   const { scrollY } = useWindowScroll()
-  const links = [
-    {
-      title: 'Home',
-      link: '/',
-    },
-    {
-      title: 'Blog',
-      link: '/blog',
-    },
-    {
-      title: content.post?.title,
-      link: `/${content.post?.link}`,
-    },
-  ]
+  const [readTime, setReadTime] = useState('')
 
   const copy = () => {
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(window.location.href)
     }
   }
-
-  // useEffect(() => {
-  //   if (showFilter) {
-  //     document.querySelector('body')?.classList.add('filter')
-  //     window.scrollTo(0, 0)
-  //   } else {
-  //     document.querySelector('body')?.classList.remove('filter')
-  //   }
-  // }, [showFilter])
-
-  // useEffect(() => {
-  //   const smooth = document.querySelector('.smooth')
-  //   const list = smooth!.querySelectorAll('.post-content h2,.post-content p')
-  //   const issues = smooth!.querySelector('.post-content')
-  //   const title = smooth!.querySelector('.post-content__title')
-  //   const top = smooth!.querySelector('.post-content__top-bottom')
-  //   issues?.classList.add('animated')
-  //   title?.classList.add('animated')
-
-  //   setTimeout(() => {
-  //     setTimeout(() => {
-  //       top?.classList.add('animated')
-  //     }, 200)
-  //   }, 1500)
-
-  //   const col = smooth!.querySelector('.post-content__col')
-  //   const navigate = smooth!.querySelector('.post-content__navigate')
-  //   const social = smooth!.querySelector('.post-content__top-social')
-  //   const items = smooth!.querySelector('.post-content__aside')
-  //   const row = document.querySelector('.post-content__row')
-  //   const img = document.querySelectorAll('.post-content img')
-
-  //   setTimeout(() => {
-  //     setTimeout(() => {
-  //       col?.classList.add('animated')
-  //     }, 500)
-  //     setTimeout(() => {
-  //       social?.classList.add('animated')
-  //     }, 800)
-  //     setTimeout(() => {
-  //       row?.classList.add('animated')
-  //     }, 1000)
-
-  //     setTimeout(() => {
-  //       items?.classList.add('animated')
-  //     }, 1500)
-  //     const mainItems = document.querySelectorAll(
-  //       '.post-content__main h2, .post-content__main p,.post-content__main img',
-  //     )
-  //     setTimeout(() => {
-  //       ;(mainItems as any)?.forEach((element: any) => {
-  //         ;(element as HTMLElement).classList.add('animated')
-  //       })
-  //     }, 1000)
-  //   }, 0)
-  // }, [content.post])
 
   useEffect(() => {
     setTimeout(() => {
@@ -141,18 +70,60 @@ const PostContent = observer(() => {
     return path
   }
 
-  const dt = content.posts
+  useEffect(() => {
+    if (showFilter) {
+      document.querySelector('.post-content')?.classList.add('show-menu')
+    } else {
+      document.querySelector('.post-content')?.classList.remove('show-menu')
+    }
+  }, [showFilter])
 
-  const linksL = GlobalState.links
+  const dt = content.posts
+  const {
+    postC: post,
+    menu,
+    book,
+    popvideos,
+    popposts,
+    links: linksL,
+  } = content
+
+  useEffect(() => {
+    if (readTime.length) return
+    if (!post?.content) return
+    let text = ``
+    post?.content?.forEach((f: any) => {
+      text += `${f.title} ${f.text}`
+    })
+    const time = Math.ceil(text.replace(/(<([^>]+)>)/gi, '').length / 1500)
+    setReadTime(`${time} min read`)
+  }, [post?.content, readTime])
+
   let videos = '',
-    blog = ''
+    blog = '',
+    blogPage = null,
+    main = null
   if (linksL) {
-    videos = linksL.find((l: any) => l.id == 644).link
-    blog = linksL.find((l: any) => l.id == 272).link
+    main = linksL.find((l: any) => l.id == 2)
+    videos = linksL.find((l: any) => l.id == 644)?.link
+    blog = linksL.find((l: any) => l.id == 272)?.link
+    blogPage = linksL.find((l: any) => l.id == 272)
   }
 
-  const { postC: post, menu, book, popvideos, popposts } = content
-
+  const links = [
+    {
+      title: main?.title || 'Home',
+      link: '/',
+    },
+    {
+      title: blogPage?.name,
+      link: blog,
+    },
+    {
+      title: content.post?.title,
+      link: `/${content.post?.link}`,
+    },
+  ]
   return (
     <>
       <section className="post-content">
@@ -167,7 +138,7 @@ const PostContent = observer(() => {
               <div className="post-content__top-bottom">
                 <div className="post-content__author">
                   <div className="post-content__author-img">
-                    <img src={post?.author.src} alt={post?.title} />
+                    <img src={post?.author.src.replaceAll('admin.', '')} alt={post?.author?.alt} />
                   </div>
                   <div className="post-content__author-info">
                     <div className="post-content__author-title">
@@ -177,14 +148,20 @@ const PostContent = observer(() => {
                       {post?.author.area}
                     </div>
                     <div className="post-content__top-text post-date">
-                      {outputFullDate(post?.date || new Date().toDateString())}
+                      <DateTime
+                        date={post?.date || new Date().toDateString()}
+                        type="long"
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="post-content__top-col short-info">
                   <div className="post-content__top-text short-info__date">
-                    Posted{' '}
-                    {outputFullDate(post?.date || new Date().toDateString())}
+                    {/* Posted{' '} */}
+                    <DateTime
+                      date={post?.date || new Date().toDateString()}
+                      type="long"
+                    />
                   </div>
 
                   <span className="post-content__top-separator short-info__date">
@@ -200,10 +177,15 @@ const PostContent = observer(() => {
                   >
                     Categories: {post?.cat}
                   </div>
-
+                  <span className="post-content__top-separator short-info__date">
+                    {'|'}
+                  </span>
                   <span className="post-content__top-separator mob-info__date">
                     {'|'}
                   </span>
+                  <div className="post-content__top-text read-time">
+                    {readTime}
+                  </div>
 
                   <div className="post-content__aside-follow mob-info__date">
                     {(menu as any).follow?.map((f: any, i: number) => (
@@ -213,7 +195,7 @@ const PostContent = observer(() => {
                           window.open(f.link, '__blank')
                         }}
                       >
-                        <img src={f.icon} alt={post?.title} />
+                        <img src={f.icon.replaceAll('admin.', '')} alt={f?.alt} />
                       </span>
                     ))}
                   </div>
@@ -240,7 +222,7 @@ const PostContent = observer(() => {
               <div className="post-content__aside-follow">
                 {(menu as any).follow?.map((f: any, i: number) => (
                   <a key={i} target="__blank" href={f.link}>
-                    <img src={f.icon} alt={post?.title} />
+                    <img src={f.icon.replaceAll('admin.', '')} alt={f?.alt} />
                   </a>
                 ))}
               </div>
@@ -251,7 +233,7 @@ const PostContent = observer(() => {
             <div className="post-content__col">
               <div className="post-content__main">
                 {post?.img?.length ? (
-                  <img src={post?.img || ''} alt={post?.title} />
+                  <img src={post?.img.replaceAll('admin.', '') || ''} alt={post?.alt} />
                 ) : (
                   <></>
                 )}
@@ -322,7 +304,7 @@ const PostContent = observer(() => {
                         {' '}
                         <a
                           className="blog-content__aside-text blog-content__aside-post"
-                          href={`/${p.link}`}
+                          href={`${blog}/${p.link}`}
                         >
                           {p.title}
                         </a>
@@ -376,10 +358,15 @@ const PostContent = observer(() => {
                 <div className="post-content__aside-follow">
                   {post?.shareList?.map((b: any, i: number) => (
                     <a key={i} href={b.link + location()} target="__blank">
-                      <img src={b.icon} alt={post.title} />
+                      <img src={b.icon.replaceAll('admin.', '')} alt={b.alt} />
                     </a>
                   ))}
-                  <Copy onClick={copy} />
+                  <img
+                    src="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1647_68132)'%3E%3Ccircle cx='16' cy='16' r='12' fill='%230033CC' /%3E%3Cpath d='M15.5584 11.5806L17.1052 10.0338C17.4244 9.71439 17.8033 9.46095 18.2204 9.288C18.6376 9.11505 19.0847 9.02598 19.5362 9.02588C19.9878 9.02577 20.4349 9.11464 20.8521 9.28739C21.2693 9.46014 21.6484 9.7134 21.9677 10.0327C22.287 10.352 22.5403 10.7311 22.713 11.1483C22.8858 11.5655 22.9746 12.0126 22.9745 12.4642C22.9744 12.9157 22.8854 13.3628 22.7124 13.78C22.5395 14.1971 22.286 14.576 21.9666 14.8952L19.7569 17.1049C19.4377 17.4241 19.0587 17.6773 18.6417 17.8501C18.2246 18.0228 17.7776 18.1117 17.3262 18.1117C16.8748 18.1117 16.4278 18.0228 16.0107 17.8501C15.5937 17.6773 15.2147 17.4241 14.8955 17.1049' stroke='%23EFEBE4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M16.4415 20.4195L14.8947 21.9663C14.5756 22.2858 14.1966 22.5392 13.7795 22.7121C13.3624 22.8851 12.9152 22.9742 12.4637 22.9743C12.0121 22.9744 11.565 22.8855 11.1478 22.7128C10.7306 22.54 10.3515 22.2867 10.0322 21.9674C9.71291 21.6482 9.45966 21.2691 9.2869 20.8519C9.11415 20.4347 9.02529 19.9875 9.02539 19.536C9.0255 19.0844 9.11457 18.6373 9.28751 18.2202C9.46046 17.8031 9.7139 17.4241 10.0333 17.105L12.2431 14.8952C12.5623 14.576 12.9412 14.3228 13.3583 14.1501C13.7753 13.9773 14.2223 13.8884 14.6737 13.8884C15.1252 13.8884 15.5721 13.9773 15.9892 14.1501C16.4063 14.3228 16.7852 14.576 17.1044 14.8952' stroke='%23EFEBE4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3Ccircle cx='16' cy='16' r='13' stroke='%230033CC' stroke-width='6' /%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1647_68132'%3E%3Crect width='32' height='32' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"
+                    onClick={copy}
+                  
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -387,7 +374,7 @@ const PostContent = observer(() => {
           <div className="post-content__sub-bottom">
             <div className="post-content__block">
               <div className="post-content__block-img">
-                <img src={post?.author.src} alt={post?.title} />
+                <img src={post?.author.src.replaceAll('admin.', '')} alt={post?.author?.alt} />
               </div>
               <div className="post-content__block-col">
                 <div className="post-content__block-subtitle">
@@ -436,10 +423,15 @@ const PostContent = observer(() => {
             <div className="post-content__aside-follow">
               {post?.shareList?.map((b: any, i: number) => (
                 <a key={i} target={'__blank'} href={b.link + location()}>
-                  <img src={b.icon} alt={post.title} />
+                  <img src={b.icon.replaceAll('admin.', '')} alt={b.alt} />
                 </a>
               ))}
-              <Copy onClick={copy} />
+              <img
+                src="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1647_68132)'%3E%3Ccircle cx='16' cy='16' r='12' fill='%230033CC' /%3E%3Cpath d='M15.5584 11.5806L17.1052 10.0338C17.4244 9.71439 17.8033 9.46095 18.2204 9.288C18.6376 9.11505 19.0847 9.02598 19.5362 9.02588C19.9878 9.02577 20.4349 9.11464 20.8521 9.28739C21.2693 9.46014 21.6484 9.7134 21.9677 10.0327C22.287 10.352 22.5403 10.7311 22.713 11.1483C22.8858 11.5655 22.9746 12.0126 22.9745 12.4642C22.9744 12.9157 22.8854 13.3628 22.7124 13.78C22.5395 14.1971 22.286 14.576 21.9666 14.8952L19.7569 17.1049C19.4377 17.4241 19.0587 17.6773 18.6417 17.8501C18.2246 18.0228 17.7776 18.1117 17.3262 18.1117C16.8748 18.1117 16.4278 18.0228 16.0107 17.8501C15.5937 17.6773 15.2147 17.4241 14.8955 17.1049' stroke='%23EFEBE4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M16.4415 20.4195L14.8947 21.9663C14.5756 22.2858 14.1966 22.5392 13.7795 22.7121C13.3624 22.8851 12.9152 22.9742 12.4637 22.9743C12.0121 22.9744 11.565 22.8855 11.1478 22.7128C10.7306 22.54 10.3515 22.2867 10.0322 21.9674C9.71291 21.6482 9.45966 21.2691 9.2869 20.8519C9.11415 20.4347 9.02529 19.9875 9.02539 19.536C9.0255 19.0844 9.11457 18.6373 9.28751 18.2202C9.46046 17.8031 9.7139 17.4241 10.0333 17.105L12.2431 14.8952C12.5623 14.576 12.9412 14.3228 13.3583 14.1501C13.7753 13.9773 14.2223 13.8884 14.6737 13.8884C15.1252 13.8884 15.5721 13.9773 15.9892 14.1501C16.4063 14.3228 16.7852 14.576 17.1044 14.8952' stroke='%23EFEBE4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3Ccircle cx='16' cy='16' r='13' stroke='%230033CC' stroke-width='6' /%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1647_68132'%3E%3Crect width='32' height='32' fill='white' /%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"
+                onClick={copy}
+               
+                loading="lazy"
+              />
             </div>
           </div>
 
@@ -450,7 +442,7 @@ const PostContent = observer(() => {
                   title={dt[getIndex() - 1]?.title}
                   isLeft
                   action={() => {
-                    window.location.href = `/${dt[getIndex() - 1]!.link}`
+                    window.location.href = `${blog}/${dt[getIndex() - 1]!.link}`
                     getPost(dt![getIndex() - 1]!.link!)
                   }}
                 />
@@ -459,7 +451,9 @@ const PostContent = observer(() => {
                   title={dt![dt!.length - 1]?.title}
                   isLeft
                   action={() => {
-                    window.location.href = `/${dt![dt!.length - 1]!.link}`
+                    window.location.href = `${blog}/${
+                      dt![dt!.length - 1]!.link
+                    }`
                     getPost(dt![dt!.length - 1]!.link!)
                   }}
                 />
@@ -469,7 +463,7 @@ const PostContent = observer(() => {
                   title={dt[getIndex() + 1]?.title}
                   isLeft={false}
                   action={() => {
-                    window.location.href = `/${dt[getIndex() + 1]!.link}`
+                    window.location.href = `${blog}/${dt[getIndex() + 1]!.link}`
                     getPost(dt![getIndex() + 1]!.link!)
                   }}
                 />
@@ -478,7 +472,7 @@ const PostContent = observer(() => {
                   title={dt![0].title}
                   isLeft={false}
                   action={() => {
-                    window.location.href = `/${dt![0].link}`
+                    window.location.href = `${blog}/${dt![0].link}`
                     getPost(dt![0]!.link!)
                   }}
                 />

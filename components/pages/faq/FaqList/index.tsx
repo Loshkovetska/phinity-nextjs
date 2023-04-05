@@ -58,9 +58,9 @@ const FaqList = observer(() => {
   }, [content.faqs, width, scrollY])
 
   let main = ''
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
 
   return (

@@ -10,6 +10,7 @@ import OurClinic from '../pages/about/OurClinic'
 import Contact from '../pages/about/Contact'
 import { observer } from 'mobx-react'
 import Layout from '../common/Layout'
+import Subscribe from '../common/Subscribe'
 
 const AboutPage = observer(
   ({ dt: { dt, reviews, menu, book } }: { dt: any }) => {
@@ -24,8 +25,6 @@ const AboutPage = observer(
         }
       }
     }, [loading])
-
-    
 
     return (
       <>
@@ -45,6 +44,7 @@ const AboutPage = observer(
           <ChooseUs chooseUs={dt.chooseUs} />
           <Reviews dt={dt.reviews} />
           <Contact dt={dt.contact} />
+          <Subscribe />
         </Layout>
       </>
     )

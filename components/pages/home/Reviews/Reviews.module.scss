@@ -108,8 +108,12 @@
       margin-bottom: 24px;
 
       svg {
+        min-width: 20px;
+        width: 100%;
+        max-width: 20px;
         path {
           transition: 0.3s ease-in-out all;
+          fill: #0033cc;
         }
       }
     }
@@ -279,8 +283,10 @@
       }
       &-rating {
         svg {
-          width: 16px;
           height: 16px;
+          min-width: 16px;
+          width: 100%;
+          max-width: 16px;
         }
         margin-bottom: 17px;
       }

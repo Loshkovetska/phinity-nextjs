@@ -12,14 +12,14 @@ const getJobC = async (slug: string) => {
   const menu = await getMenu(),
     job = await getVacancy(slug),
     home = await getHome(),
-          therapists = await getTherapists()
-
+    therapists = await getTherapists()
 
   return {
     jobC: response,
     job,
     menu,
-    home,therapists
+    home,
+    therapists,
   }
 }
 export default getJobC

@@ -31,6 +31,7 @@ import { changePlayerState, setVideo } from '../../../common/VideoBox'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import VideoPreload from '../../../common/VideoPreload'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const Vector = ({ id }: { id: number }) => {
   const vectors = [
@@ -262,10 +263,10 @@ const OurServices = observer(({ services }: { services: any }) => {
     }
   }, [DBStore.services, width])
 
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   let servicesL = ''
   if (linksL) {
-    servicesL = linksL.find((l: any) => l.id == 264).link
+    servicesL = linksL.find((l: any) => l.id == 264)?.link
   }
 
   return (
@@ -398,7 +399,7 @@ const OurServices = observer(({ services }: { services: any }) => {
           >
             <div className="our-services__item-content">
               <div className="our-services__item-img">
-                <img src={s.img} alt={s.title} />
+                <img src={s.img.replaceAll('admin.', '')} alt={s.alt||''} />
               </div>
               <div
                 className={classNames('our-services__item-title')}

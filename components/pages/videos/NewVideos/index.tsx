@@ -45,14 +45,13 @@ const NewVideos = observer(() => {
 
   let main = '',
     thera = ''
-  const linksL = GlobalState.links
+  const content = useContentState()
+  const { videosC, videos, links: linksL } = content
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    thera = linksL.find((l: any) => l.id == 268).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    thera = linksL.find((l: any) => l.id == 268)?.link
   }
 
-  const content = useContentState()
-  const { videosC, videos } = content
   return (
     <section className="new-videos">
       <PageLinks
@@ -70,24 +69,24 @@ const NewVideos = observer(() => {
             }}
           ></div>
         </div>
-          <Button
-            text={
-              <>
-                {width > 768 ? <Setting /> : <MSetting />}
-                {width > 768 && 'Filter'}
-                {width > 768 && GlobalState.filterCount ? (
-                  <span>({GlobalState.filterCount})</span>
-                ) : (
-                  <></>
-                )}
-              </>
-            }
-            click={changeTheraFilterState}
-            classname="black-border p11p24 filter"
-          />
-      
+        <Button
+          text={
+            <>
+              {width > 768 ? <Setting /> : <MSetting />}
+              {width > 768 && 'Filter'}
+              {width > 768 && GlobalState.filterCount ? (
+                <span>({GlobalState.filterCount})</span>
+              ) : (
+                <></>
+              )}
+            </>
+          }
+          click={changeTheraFilterState}
+          classname="black-border p11p24 filter"
+        />
       </div>
       <VideosList videos={videos} />
+      
     </section>
   )
 })

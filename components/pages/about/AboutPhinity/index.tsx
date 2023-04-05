@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import { useEffect } from 'react'
 
-const AboutPhinity = observer(({phinity}:{phinity:any}) => {
+const AboutPhinity = observer(({ phinity }: { phinity: any }) => {
   // useEffect(() => {
   //     const smooth = document.querySelector('.smooth')
   //     const images = smooth!.querySelector('.about-phinity__col.images')
@@ -38,21 +38,19 @@ const AboutPhinity = observer(({phinity}:{phinity:any}) => {
     <section className="about-phinity">
       <div className="about-phinity__col images">
         <img
-          src={phinity.img1}
+          src={phinity.img1?.replaceAll('admin.', '')}
           className="about-phinity__img left"
-          alt={phinity.title}
+          alt={phinity.alt1}
         />
         <img
-          src={phinity.img2}
+          src={phinity.img2?.replaceAll('admin.', '')}
           className="about-phinity__img right"
-          alt={phinity.title}
+          alt={phinity.alt2}
         />
       </div>
       <div className="about-phinity__col">
         <div style={{ overflow: 'hidden' }}>
-          <div className="about-phinity__title">
-            {phinity.title}
-          </div>
+          <div className="about-phinity__title">{phinity.title}</div>
         </div>
         <div style={{ overflow: 'hidden' }}>
           <div
@@ -62,7 +60,6 @@ const AboutPhinity = observer(({phinity}:{phinity:any}) => {
             }}
           ></div>
         </div>
-     
       </div>
     </section>
   )

@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react'
 import Button from '../Button'
-import '../../../styles/cookie.module.scss'
 import Close from '../../../assets/close.svg'
 import Candies from '../../../assets/ex/Frame 32101 (1).svg'
 import { useEffect, useState } from 'react'
@@ -39,10 +38,10 @@ const Cookie = observer(() => {
     setShow(false)
   }
 
-  const linksL = GlobalState.links
+  const { links } = useContentState()
   let cookie = ''
-  if (linksL) {
-    cookie = linksL.find((l: any) => l.id == 775).link
+  if (links) {
+    cookie = links?.find((l: any) => l.id == 775)?.link
   }
 
   return (

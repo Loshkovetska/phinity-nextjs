@@ -7,6 +7,7 @@ import GlobalState, { search } from '../../../stores/GlobalState'
 import { changeSearchState } from '../../../stores/GlobalState'
 import { runInAction } from 'mobx'
 import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
+import { useContentState } from '../../../hooks/RootStoreProvider'
 const SearchBox = observer(() => {
   const ref = useRef<any>(null)
   const [input, setState] = useState(' ')
@@ -92,6 +93,8 @@ const SearchBox = observer(() => {
     } else document.body.classList.remove('hidden')
   }, [GlobalState.isSearchOpen])
 
+  const { links } = useContentState()
+
   return (
     <section
       className={classNames(
@@ -147,23 +150,23 @@ const SearchBox = observer(() => {
               link = ''
             if (s.cat == 'issues') {
               title = 'Issues'
-              link = '/issues/'
+              link = links?.find((l: any) => l.id == 266)?.link + '/'
             }
             if (s.cat == 'articles') {
               title = 'Blog'
-              link = '/'
+              link = '/blog/'
             }
             if (s.cat == 'therapists') {
               title = 'Therapists'
-              link = '/therapists/'
+              link = links?.find((l: any) => l.id == 268)?.link + '/'
             }
             if (s.cat == 'services') {
               title = 'Services'
-              link = '/services/'
+              link = links?.find((l: any) => l.id == 264)?.link + '/'
             }
             if (s.cat == 'videos') {
               title = 'Videos'
-              link = '/videos/'
+              link = links?.find((l: any) => l.id == 644)?.link + '/'
             }
 
             if (!s.list.length) return <></>

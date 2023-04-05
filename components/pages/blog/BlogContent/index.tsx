@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react'
-import { outputDate } from '../../../../methods/output'
 import DBStore from '../../../../stores/DBStore'
 import PageLinks from '../../../common/PageLinks'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -17,7 +16,11 @@ import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import BlogItem from '../../../common/BlogItem'
+import { observable, runInAction } from 'mobx'
 
+export const BlogCategoryState = observable({
+  cat: '',
+})
 const BlogContent = observer(() => {
   const content = useContentState()
   const { scrollY } = useWindowScroll()
@@ -30,7 +33,7 @@ const BlogContent = observer(() => {
 
   const getCount = (cat: string) => {
     return content?.posts?.filter(
-      (p: Post) => p.cat.toLocaleLowerCase() === cat.toLocaleLowerCase(),
+      (p: Post) => p.cat?.toLocaleLowerCase() === cat?.toLocaleLowerCase(),
     ).length
   }
 
@@ -142,27 +145,35 @@ const BlogContent = observer(() => {
     }, 1000)
   }, [])
 
-  const getCountByCat = (cat: string) => {
-    return DBStore.posts?.filter((d) => d.cat == cat)?.length || 0
-  }
+  useEffect(() => {
+    if (BlogCategoryState.cat.length) {
+      setCat(BlogCategoryState.cat)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+      setCurrentPage(1)
+    }
+  }, [BlogCategoryState.cat])
 
   const reset = () => {
     localStorage.removeItem('blog')
+    runInAction(() => {
+      BlogCategoryState.cat = ''
+    })
     setCat('')
     setCurrentPage(1)
   }
 
   const { width } = useWindowDimensions()
 
+  const { blog, book, links: linksL }: any = content
   let main = '',
     vacanc = ''
-  const linksL = GlobalState.links
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
-    vacanc = linksL.find((l: any) => l.id == 262).link
+    main = linksL.find((l: any) => l.id == 2)?.link
+    vacanc = linksL.find((l: any) => l.id == 262)?.link
   }
-
-  const { blog, book }: any = content
   const links = [
     {
       title: blog?.mainPageTitle || 'Home',
@@ -243,7 +254,11 @@ const BlogContent = observer(() => {
                       )}
                       key={i}
                       onClick={() => {
-                        setCat(c)
+                        runInAction(() => {
+                          BlogCategoryState.cat = c
+                        })
+
+                        //setCat(c)
                         setCurrentPage(1)
                         localStorage.clear()
                         setFilter(false)

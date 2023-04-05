@@ -1,4 +1,9 @@
-import { getBookBlock, getMenu, getSinglePost } from '../../stores/ContentStore'
+import {
+  getBookBlock,
+  getHome,
+  getMenu,
+  getSinglePost,
+} from '../../stores/ContentStore'
 import {
   getPopularPosts,
   getPopularVideos,
@@ -9,6 +14,7 @@ import {
 
 export const getPostC = async (slug: string) => {
   const menu = await getMenu(),
+    home = await getHome(),
     book = await getBookBlock(),
     videos = await getVideos(),
     posts = await getPosts(),
@@ -29,5 +35,6 @@ export const getPostC = async (slug: string) => {
     popvideos,
     popposts,
     therapists,
+    home,
   }
 }

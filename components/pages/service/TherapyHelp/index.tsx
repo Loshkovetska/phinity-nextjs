@@ -98,8 +98,8 @@ const TherapyHelp = observer(({ dt, home }: { dt: any; home: any }) => {
               <div className="therapy-help__item-title">{i.title}</div>
               <img
                 className="therapy-help__item-img"
-                src={i.icon}
-                alt={i.title}
+                src={i.icon.replaceAll('admin.', '')}
+                alt={i.alt}
               />
               <div
                 className="therapy-help__text"

@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react'
 import { useEffect } from 'react'
 import Vector from '../../../../assets/Vector 9.svg'
-import ContentStore from '../../../../stores/ContentStore'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'

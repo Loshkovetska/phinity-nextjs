@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Vector from '../../../../assets/home-area.svg'
 import GlobalState from '../../../../stores/GlobalState'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const AboutContent = observer(({ about }: { about: any }) => {
   // const [isAnimate, setAnimate] = useState(false)
@@ -51,9 +52,9 @@ const AboutContent = observer(({ about }: { about: any }) => {
   const { width } = useWindowDimensions()
 
   let main = ''
-  const linksL = GlobalState.links
+  const {links:linksL} = useContentState()
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
 
   if (!about) return <></>

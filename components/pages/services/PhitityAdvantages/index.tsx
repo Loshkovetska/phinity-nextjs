@@ -71,9 +71,9 @@ const PhinityAdvantages = observer(({ dt }: { dt: any }) => {
           {dt.list.map((i: any, id: number) => (
             <div className="phinity-adv__item" key={id}>
               <img
-                src={i.icon}
+                src={i.icon.replaceAll('admin.', '')}
                 className="phinity-adv__item-img"
-                alt={dt.title}
+                alt={i.alt}
               />
               <div
                 className="phinity-adv__item-title"

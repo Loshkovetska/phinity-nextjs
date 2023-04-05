@@ -21,7 +21,7 @@ export const getBlog = async () => {
     popvideos = await getPopularVideos(),
     popposts = await getPopularPosts(),
     blog = await getBlogContent(),
-      therapists = await getTherapists()
+    therapists = await getTherapists()
 
   return {
     blog,
@@ -32,6 +32,6 @@ export const getBlog = async () => {
     posts,
     popvideos,
     popposts,
-    therapists
+    therapists,
   }
 }

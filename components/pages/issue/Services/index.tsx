@@ -1,8 +1,5 @@
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import DBStore from '../../../../stores/DBStore'
-
 import V1 from '../../../../assets/services-vectors/Vector 10.svg'
 import V2 from '../../../../assets/services-vectors/Vector 11.svg'
 import V3 from '../../../../assets/services-vectors/Vector 12.svg'
@@ -18,6 +15,7 @@ import Arrow from '../../../../assets/caret-right.svg'
 
 import VScroll from '../../../../assets/Vector 5.svg'
 import { useRouter } from 'next/router'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 
 const Services = observer(({ title, dt }: { title: string; dt: any }) => {
   const { pathname } = useRouter()
@@ -107,10 +105,10 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
 
   if (!dt) return <></>
 
-  const links = GlobalState.links
+  const {links} = useContentState();
   let services = ''
   if (links) {
-    services = links.find((l: any) => l.id == 264).link
+    services = links.find((l: any) => l.id == 264)?.link
   }
 
   return (
@@ -143,7 +141,7 @@ const Services = observer(({ title, dt }: { title: string; dt: any }) => {
             >
               <div className="our-services__item-content">
                 <div className="our-services__item-img">
-                  <img src={s.img} alt={s.title} loading="lazy" />
+                  <img src={s.img.replaceAll('admin.', '')} alt={s.alt} loading="lazy" />
                 </div>
                 <div
                   className={classNames('our-services__item-title')}

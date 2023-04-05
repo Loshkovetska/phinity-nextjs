@@ -19,6 +19,10 @@ const GlobalState: GlobalType = observable({
   search: null,
   locoScroll: null,
   rating: null,
+  //    {
+  //   average_rating: 5,
+  //   num_ratings: 0,
+  // },
   isTheraFilter: false,
   filterCount: 0,
   history: null,
@@ -26,22 +30,6 @@ const GlobalState: GlobalType = observable({
 })
 
 export default GlobalState
-
-export const getLinks = async () => {
-  const fd = new FormData()
-  fd.append('status', 'linkPage')
-
-  fetch(DOMAIN + 'react', {
-    method: 'POST',
-    body: fd,
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      runInAction(() => {
-        GlobalState.links = result
-      })
-    })
-}
 
 export const changeTheraFilterState = () => {
   runInAction(() => {
@@ -108,13 +96,27 @@ export const getReviewsIO = async () => {
       average_rating: res.stats.average_rating,
       num_ratings: res.stats.total_reviews,
     }
+  } catch (e) {
+    console.log(e)
+  }
+}
 
-    // runInAction(() => {
-    //   GlobalState.rating = {
-    //     average_rating: res.stats.average_rating,
-    //     num_ratings: res.stats.total_reviews,
-    //   }
-    // })
+export const getReviewsIODynamic = async () => {
+  try {
+    let response = await fetch(
+      'https://api.reviews.io/merchant/reviews?store=phinity-therapy&sku=SKUS',
+      {
+        method: 'GET',
+      },
+    )
+
+    let res = await response.json()
+    runInAction(() => {
+      GlobalState.rating = {
+        average_rating: res.stats.average_rating,
+        num_ratings: res.stats.total_reviews,
+      }
+    })
   } catch (e) {
     console.log(e)
   }

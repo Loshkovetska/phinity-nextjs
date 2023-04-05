@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Vector from '../../../../assets/home-area.svg'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useWindowScroll } from '../../../../hooks/getWindowScroll'
+import { useContentState } from '../../../../hooks/RootStoreProvider'
 import GlobalState from '../../../../stores/GlobalState'
 import PageLinks from '../../../common/PageLinks'
 const TermsContent = observer(({ dt }: { dt: any }) => {
@@ -61,9 +62,9 @@ const TermsContent = observer(({ dt }: { dt: any }) => {
   if (!dt) return <></>
 
   let main = ''
-  const linksL = GlobalState.links
+  const { links: linksL } = useContentState()
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2).link
+    main = linksL.find((l: any) => l.id == 2)?.link
   }
 
   return (

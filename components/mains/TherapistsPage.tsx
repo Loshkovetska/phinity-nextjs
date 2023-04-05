@@ -8,10 +8,10 @@ import Filter from '../pages/therapists/Filter'
 import { runInAction } from 'mobx'
 import Layout from '../common/Layout'
 import { useContentState } from '../../hooks/RootStoreProvider'
+import Subscribe from '../common/Subscribe'
 
 const TherapistsPage = observer(({ dt }: { dt: any }) => {
   const content = useContentState()
-
 
   useEffect(() => {
     getTherapists().then((res) => {
@@ -25,6 +25,7 @@ const TherapistsPage = observer(({ dt }: { dt: any }) => {
         <Therapists />
         <Reviews dt={content.therapistsC.reviews} />
         <BookBlock />
+        <Subscribe />
       </Layout>
       <Filter
         params={[{ title: 'Category', list: content.filters }]}

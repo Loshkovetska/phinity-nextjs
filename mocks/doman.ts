@@ -1,1 +1,1 @@
-export const DOMAIN = 'https://phinitytherapy.com/admin/'
+export const DOMAIN = 'https://admin.phinitytherapy.com/'

@@ -20,40 +20,6 @@ const VacanciesContent = observer(({ works }: { works: any }) => {
   const { width } = useWindowDimensions()
   const { scrollY } = useWindowScroll()
   const content = useContentState()
-  // useEffect(() => {
-  //   if (!DBStore.vacancies?.length) return
-  //   document.querySelector('.vacancies')?.classList.add('animated')
-  //   setTimeout(() => {
-  //     setTimeout(() => {
-  //       document
-  //         .querySelectorAll('.vacancies__title')
-  //         ?.forEach((c) => c.classList.add('animated'))
-  //     }, 300)
-
-  //     setTimeout(() => {
-  //       document
-  //         .querySelector('.vacancies__subtitle')
-  //         ?.classList.add('animated')
-  //     }, 600)
-  //     const items = document.querySelectorAll('.vacancies__text')
-
-  //     setTimeout(() => {
-  //       items.forEach((i, id) => {
-  //         i.classList.add('animated')
-  //         ;(i as HTMLDivElement).style.transitionDelay = `${id / 4 + 1}s`
-  //       })
-  //     }, 900)
-
-  //     setTimeout(() => {
-  //       const items = document.querySelectorAll('.vacancies__item')
-  //       items.forEach((i, id) => {
-  //         setTimeout(() => {
-  //           i?.classList.add('animated')
-  //         }, (id / 6) * 1000)
-  //       })
-  //     }, 1200)
-  //   }, 1000)
-  // }, [DBStore.vacancies, works])
 
   useEffect(() => {
     const container = document.querySelector('.vacancies')
@@ -89,10 +55,10 @@ const VacanciesContent = observer(({ works }: { works: any }) => {
     vacancies = vacancies.sort((a, b) => a.title.localeCompare(b.title))
   }
 
-  const links = GlobalState.links
+  const { links } = useContentState()
   let main = ''
   if (links) {
-    main = links.find((l: any) => l.id == 2).link
+    main = links.find((l: any) => l.id == 2)?.link
   }
 
   return (
@@ -176,11 +142,11 @@ const VacanciesContent = observer(({ works }: { works: any }) => {
 
 export default VacanciesContent
 
-const VacancyItem = ({ item }: { item: Vacancy }) => {
-  const links = GlobalState.links
+const VacancyItem = observer(({ item }: { item: Vacancy }) => {
+  const { links } = useContentState()
   let vacancies = ''
   if (links) {
-    vacancies = links.find((l: any) => l.id == 262).link
+    vacancies = links.find((l: any) => l.id == 262)?.link
   }
 
   return (
@@ -203,4 +169,4 @@ const VacancyItem = ({ item }: { item: Vacancy }) => {
       <ArrowRight className="vacancies__item-arrow" />
     </a>
   )
-}
+})

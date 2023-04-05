@@ -37,7 +37,7 @@
 
     color: #222426;
 
-     opacity: 0.8;
+    opacity: 0.8;
     margin: 24px 0 140px;
     max-width: 738px;
 
@@ -58,6 +58,9 @@
     top: 0;
     left: -80px;
     z-index: 0;
+    width: 436px;
+    height: 664px;
+
     @media (max-width: 1439px) {
       left: -16px;
     }
