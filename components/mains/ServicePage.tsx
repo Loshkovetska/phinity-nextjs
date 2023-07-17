@@ -1,39 +1,40 @@
-import { observer } from 'mobx-react'
-import { useEffect, useState } from 'react'
-import { Issue } from '../../api/mocks/issues'
-import References from '../common/References'
-import Videos from '../pages/blog/Videos'
-import Blogs from '../pages/home/Blogs'
-import BookBlock from '../pages/home/BookBlock'
-import Issues from '../pages/home/Issues'
-import Therapists from '../pages/home/Therapists'
-import AboutService from '../pages/service/AboutService'
-import AboutSphere from '../pages/service/AboutSphere'
-import TherapyHelp from '../pages/service/TherapyHelp'
-import Intro from '../pages/services/Intro'
-import DBStore, { getTherapists } from '../../stores/DBStore'
-import GlobalState, { getReviewsIO } from '../../stores/GlobalState'
-import { useWindowDimensions } from '../../hooks/getWindowDimensions'
-import Layout from '../common/Layout'
-import { useContentState } from '../../hooks/RootStoreProvider'
-import Subscribe from '../common/Subscribe'
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { Issue } from "../../api/mocks/issues";
+import References from "../common/References";
+import Videos from "../pages/blog/Videos";
+import Blogs from "../pages/home/Blogs";
+import BookBlock from "../pages/home/BookBlock";
+import Issues from "../pages/home/Issues";
+import Therapists from "../pages/home/Therapists";
+import AboutService from "../pages/service/AboutService";
+import AboutSphere from "../pages/service/AboutSphere";
+import TherapyHelp from "../pages/service/TherapyHelp";
+import Intro from "../pages/services/Intro";
+import DBStore, { getTherapists } from "../../stores/DBStore";
+import GlobalState, { getReviewsIO } from "../../stores/GlobalState";
+import { useWindowDimensions } from "../../hooks/getWindowDimensions";
+import Layout from "../common/Layout";
+import { useContentState } from "../../hooks/RootStoreProvider";
+import Subscribe from "../common/Subscribe";
+import TherapyHelpVideos from "../common/TherapyHelpVideos";
 
 const ServicePage = observer(({ data }: { data: any }) => {
-  const { width } = useWindowDimensions()
+  const { width } = useWindowDimensions();
 
-  const [theraps, setDt] = useState([])
+  const [theraps, setDt] = useState([]);
   useEffect(() => {
     getTherapists().then((res) => {
-      setDt(res)
-    })
-  }, [])
+      setDt(res);
+    });
+  }, []);
 
-  let main = '',
-    servL = ''
-  const { links: linksL } = useContentState()
+  let main = "",
+    servL = "";
+  const { links: linksL } = useContentState();
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2)?.link
-    servL = linksL.find((l: any) => l.id == 264)?.link
+    main = linksL.find((l: any) => l.id == 2)?.link;
+    servL = linksL.find((l: any) => l.id == 264)?.link;
   }
   const links = [
     {
@@ -46,20 +47,20 @@ const ServicePage = observer(({ data }: { data: any }) => {
     },
     {
       title: `${data.service.title}`,
-      link: '/',
+      link: "/",
     },
-  ]
+  ];
 
   const dt = {
     title: data.serviceC.intro.title,
     text: data.serviceC.intro.text,
     buttonText: data.serviceC.intro.buttonText,
     buttonLink: data.serviceC.intro.buttonLink,
-  }
+  };
 
-  let issues: Array<Issue> = []
+  let issues: Array<Issue> = [];
   if (data.serviceC.issues.list) {
-    issues = JSON.parse(JSON.stringify(data.serviceC?.issues?.list))
+    issues = JSON.parse(JSON.stringify(data.serviceC?.issues?.list));
   }
   return (
     <>
@@ -71,10 +72,12 @@ const ServicePage = observer(({ data }: { data: any }) => {
           classname="service-page"
           dt={data.serviceC.issues}
           arr={issues.sort((a: Issue, b: Issue) =>
-            a.title.localeCompare(b.title),
+            a.title.localeCompare(b.title)
           )}
         />
         <TherapyHelp dt={data.serviceC.help} home={data.home} />
+        <TherapyHelpVideos dt={data.serviceC.therapyVideos} />
+
         <Therapists
           dt={theraps}
           therapist={data.serviceC.therapist}
@@ -90,10 +93,10 @@ const ServicePage = observer(({ data }: { data: any }) => {
         <Videos arr={data.videos} dt={data.serviceC.video} />
         <References dt={data.serviceC.refs} />
         <BookBlock />
-        <Subscribe/>
+        <Subscribe />
       </Layout>
     </>
-  )
-})
+  );
+});
 
-export default ServicePage
+export default ServicePage;

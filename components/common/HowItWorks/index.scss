@@ -1,0 +1,77 @@
+.how-works {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 140px;
+  position: relative;
+  z-index: 1;
+  &__title {
+    font-family: "MADE Mirage";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+    text-align: center;
+    color: #222426;
+    margin-bottom: 56px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-icon {
+      width: 64px;
+      height: 64px;
+      border: 1px solid #222426;
+      border-radius: 50%;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 24px;
+        height: 24px;
+        object-fit: cover;
+      }
+    }
+    &-text {
+      font-family: "Montserrat Regular";
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 160%;
+      text-align: center;
+      color: #222426;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+
+    &__list {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: 20px;
+    }
+
+    &__title {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 120%;
+      margin-bottom: 32px;
+    }
+
+    &__item {
+      &-text {
+        font-size: 14px;
+        line-height: 150%;
+      }
+    }
+  }
+}

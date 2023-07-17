@@ -1,0 +1,127 @@
+.stories {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 140px;
+
+  &__title {
+    font-family: "MADE Mirage";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+
+    text-align: center;
+    color: #222426;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-family: "Montserrat Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 876px;
+    width: 100%;
+    margin: 0 auto 56px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    &.slider-list {
+      display: none;
+    }
+  }
+  &__item {
+    &-img {
+      width: 100%;
+      max-height: 288px;
+      margin-bottom: 12px;
+      display: flex;
+      height: 21vw;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      margin-bottom: 12px;
+    }
+    &-text {
+      font-family: "Montserrat Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 160%;
+      /* or 29px */
+
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+
+    &__title {
+      font-size: 32px;
+      line-height: 120%;
+    }
+
+    &__top {
+      margin: 0 auto 32px;
+    }
+
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__text {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+    }
+
+    &__item {
+      &-img {
+        height: 39vw;
+        max-height: 377px;
+      }
+      &-text {
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__list {
+      display: none;
+
+      &.slider-list {
+        display: flex;
+        column-gap: 0;
+        row-gap: 0;
+      }
+    }
+
+    &__item {
+      min-width: calc(100vw - 42px);
+      max-width: calc(100vw - 42px);
+      &-img {
+        height: 64vw;
+      }
+    }
+  }
+}

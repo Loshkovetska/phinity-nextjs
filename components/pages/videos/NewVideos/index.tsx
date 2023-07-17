@@ -1,55 +1,25 @@
-import { observer } from 'mobx-react'
-import { useEffect, useState } from 'react'
-import DBStore from '../../../../stores/DBStore'
+import { observer } from "mobx-react";
 import GlobalState, {
   changeTheraFilterState,
-} from '../../../../stores/GlobalState'
-import Button from '../../../common/Button'
-import PageLinks from '../../../common/PageLinks'
-import VideosList from '../VideosiList'
-import Setting from '../../../../assets/filter.svg'
-import MSetting from '../../../../assets/mob-sett.svg'
-import ContentStore from '../../../../stores/ContentStore'
-import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
-import { useContentState } from '../../../../hooks/RootStoreProvider'
+} from "../../../../stores/GlobalState";
+import Button from "../../../common/Button";
+import PageLinks from "../../../common/PageLinks";
+import VideosList from "../VideosiList";
+import Setting from "../../../../assets/filter.svg";
+import MSetting from "../../../../assets/mob-sett.svg";
+import { useWindowDimensions } from "../../../../hooks/getWindowDimensions";
+import { useContentState } from "../../../../hooks/RootStoreProvider";
 const NewVideos = observer(() => {
-  const { width } = useWindowDimensions()
+  const { width } = useWindowDimensions();
 
-  // useEffect(() => {
-  //   if (DBStore.videos) {
-  //     setTimeout(() => {
-  //       document.querySelector('.new-videos')?.classList.add('animated')
-  //     }, 300)
+  let main = "",
+    thera = "";
+  const content = useContentState();
 
-  //     setTimeout(() => {
-  //       document.querySelector('.new-videos__title')?.classList.add('animated')
-  //     }, 500)
-
-  //     setTimeout(() => {
-  //       document
-  //         .querySelector('.new-videos__subtitle')
-  //         ?.classList.add('animated')
-  //     }, 700)
-
-  //     setTimeout(() => {
-  //       const items = document!.querySelectorAll('.videos-list .videos__item')
-  //       Array.from(items).forEach((i, id) => {
-  //         i?.classList.add('animated')
-  //         if (id >= 0 && id <= 5) {
-  //           ;(i as HTMLDivElement).style.transitionDelay = `${id / 8 + 0.5}s`
-  //         }
-  //       })
-  //     }, 1000)
-  //   }
-  // }, [DBStore.videos])
-
-  let main = '',
-    thera = ''
-  const content = useContentState()
-  const { videosC, videos, links: linksL } = content
+  const { videosC, videos, links: linksL, book } = content;
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2)?.link
-    thera = linksL.find((l: any) => l.id == 268)?.link
+    main = linksL.find((l: any) => l.id == 2)?.link;
+    thera = linksL.find((l: any) => l.id == 268)?.link;
   }
 
   return (
@@ -57,11 +27,11 @@ const NewVideos = observer(() => {
       <PageLinks
         links={[
           { title: videosC?.mainPageTitle, link: main },
-          { title: videosC?.pageTitle, link: '/video' },
+          { title: videosC?.pageTitle, link: "/video" },
         ]}
       />
       <div className="new-videos__top">
-        <div style={{ overflow: 'hidden' }}>
+        <div style={{ overflow: "hidden" }}>
           <div
             className="new-videos__title"
             dangerouslySetInnerHTML={{
@@ -73,7 +43,7 @@ const NewVideos = observer(() => {
           text={
             <>
               {width > 768 ? <Setting /> : <MSetting />}
-              {width > 768 && 'Filter'}
+              {width > 768 && "Filter"}
               {width > 768 && GlobalState.filterCount ? (
                 <span>({GlobalState.filterCount})</span>
               ) : (
@@ -86,9 +56,28 @@ const NewVideos = observer(() => {
         />
       </div>
       <VideosList videos={videos} />
-      
+      <div className="blog-content__aside-book">
+        <h3
+          dangerouslySetInnerHTML={{
+            __html: content?.videosC?.book?.title,
+          }}
+        ></h3>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: content?.videosC?.book?.text,
+          }}
+        ></p>
+        <a
+          className="button light-blue"
+          href={book.buttonLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="button__text">{book.buttonText}</div>
+        </a>
+      </div>
     </section>
-  )
-})
+  );
+});
 
-export default NewVideos
+export default NewVideos;

@@ -1,53 +1,48 @@
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
-
 import GlobalState, { changeMenuState } from '../../../stores/GlobalState'
 
 import Arrow from '../../../assets/caret-right.svg'
+import ArrowRight from '../../../assets/arrow-right.svg'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
 import ImageComponent from '../ImageComponent'
 import { useContentState } from '../../../hooks/RootStoreProvider'
 
 const Navigation = observer(() => {
-  const { width } = useWindowDimensions()
-  const { pathname } = useRouter()
   const { menu, therapists, links } = useContentState()
 
   useEffect(() => {
     if (GlobalState.isMenuOpen) {
       document.body.classList.add('hidden')
-    } else document.body.classList.remove('hidden')
+      document.querySelector('html')?.classList.add('hidden')
+    } else {
+      document.querySelector('html')?.classList.remove('hidden')
+      document.body.classList.remove('hidden')
+    }
   }, [GlobalState.isMenuOpen])
 
   let therapist = ''
   if (links) {
     therapist = links?.find((l: any) => l.id == 268).link
   }
+  
   return (
     <nav className={classNames('navigation', GlobalState.isMenuOpen && 'open')}>
-      {(menu as any)?.list?.map((m: any, i: number) => (
-        <a
-          key={i}
-          href={
-            m.link.includes(therapist)
+      {(menu as any)?.list?.map((m: any, i: number) => {
+        return (
+          <NavigationItem m={{
+          ...m, link: m.link.includes(therapist)
               ? therapist + '/' + therapists[0].link
               : m.link
-          }
-          className={classNames(
-            'navigation__link',
-            pathname.trim() == m.link.trim() && 'active',
-            i + 1 == menu.list.length && 'last',
-          )}
-          onClick={() => {
-            window.innerWidth <= 1120 && changeMenuState()
           }}
-        >
-          {m.title} <Arrow />
-        </a>
-      ))}
+            i={i}
+            menu={menu}
+            key={i} />
+      )
+      })}
       <div className="navigation__socials">
         <div className="navigation__title">Follow us</div>
         {(menu as any)?.follow?.map((f: any, i: number) => (
@@ -92,3 +87,56 @@ const Navigation = observer(() => {
 })
 
 export default Navigation
+
+
+const NavigationItem = ({ m, i, menu }: { m: any, i:number, menu:any }) => {
+  const { pathname } = useRouter()
+  const [isOpen, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.style.setProperty('--height-list',(isOpen? ref.current.scrollHeight+32:0)+'px')
+  }, [isOpen])
+  
+  return   <div className={classNames('navigation__item', isOpen && 'open',  i + 1 == menu.list.length && 'last',)} onClick={()=>setOpen(!isOpen)}>
+         {m.list?.length > 0? <div className='navigation__link'>
+            {m.title} <Arrow />
+          </div>: <a
+          href={m.link}
+          className={classNames(
+            'navigation__link',
+            pathname.trim() == m.link.trim() && 'active',
+           
+          )}
+          onClick={() => {
+            window.innerWidth <= 1120 && changeMenuState()
+          }}
+        >
+          {m.title} 
+          </a>}
+         
+          {
+      m.list?.length > 0 && <div className={classNames('navigation__submenu')}
+        ref={ref}
+        onClick={(e) => e.stopPropagation()}>
+              <div className='navigation__submenu-cont'>
+                  { m.list?.map((c: any, id: number) => (
+                    <a
+                      key={id}
+                      href={c.link}
+                      className={classNames(
+                        'navigation__but',
+                      )}
+                      onClick={() => {
+                        window.innerWidth <= 1120 && changeMenuState()
+                      }}
+                    >
+                    {c.title}  <ArrowRight/>
+                  </a>
+            ))}
+           </div>
+            </div>
+           
+          }
+      </div>
+}

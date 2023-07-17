@@ -41,7 +41,7 @@
   }
 
   &__title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 90px;
@@ -110,7 +110,7 @@
       p,
       span {
         display: initial;
-        font-family: 'Montserrat Regular';
+        font-family: "Montserrat Regular";
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -144,6 +144,14 @@
       width: 100%;
       margin-left: 0;
       opacity: 0;
+
+      &-title {
+        -webkit-line-clamp: 2;
+        font-size: 24px;
+        line-height: 130%;
+        margin-top: 16px;
+      }
+
       .blogs__item-date,
       .blogs__item-bottom {
         display: none;
@@ -151,6 +159,8 @@
 
       .blogs__item-top {
         margin: 0px 0 24px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       &.animated {
@@ -158,7 +168,7 @@
       }
       &-text {
         & > p {
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 4;
         }
       }
     }
@@ -199,7 +209,7 @@
       max-height: 24px;
     }
     &-title {
-      font-family: 'MADE Mirage';
+      font-family: "MADE Mirage";
       font-style: normal;
       font-weight: 500;
       font-size: 18px;
@@ -212,14 +222,14 @@
         align-items: center;
         span {
           margin-left: 32px;
-          font-family: 'Montserrat Regular';
+          font-family: "Montserrat Regular";
           font-size: 16px;
           display: inline-flex;
           width: fit-content;
           position: relative;
           cursor: pointer;
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: -8px;
             width: 0;
@@ -242,7 +252,7 @@
     }
     &-text {
       text-decoration: none;
-      font-family: 'Montserrat Regular';
+      font-family: "Montserrat Regular";
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -262,7 +272,7 @@
       position: relative;
       width: fit-content;
       &::after {
-        content: '';
+        content: "";
         width: 0;
         height: 2px;
         background: #222426;
@@ -288,7 +298,7 @@
     &-all {
       width: fit-content;
       margin-top: 37px;
-      font-family: 'Montserrat SemiBold';
+      font-family: "Montserrat SemiBold";
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -299,7 +309,7 @@
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
         height: 2px;
         width: 0;
         bottom: -8px;
@@ -335,7 +345,7 @@
       flex-direction: column;
       align-items: center;
       h3 {
-        font-family: 'MADE Mirage';
+        font-family: "MADE Mirage";
         font-style: normal;
         font-weight: 400;
         font-size: 32px;
@@ -347,7 +357,7 @@
         margin-bottom: 12px;
       }
       p {
-        font-family: 'Montserrat Regular';
+        font-family: "Montserrat Regular";
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -408,7 +418,8 @@
     &__aside {
       overflow: auto;
       z-index: 12;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+
       padding: 20px 16px 56px;
       position: fixed;
       right: 0;

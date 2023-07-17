@@ -2,6 +2,7 @@ import {
   getBookBlock,
   getIssuesContent,
   getMenu,
+  getSubscribeBlock,
 } from '../../stores/ContentStore'
 import {
   getIssues,
@@ -19,7 +20,9 @@ export const getIssuesC = async () => {
     book = await getBookBlock(),
     issuesC = await getIssuesContent(),
     issues = await getIssues(),
-    therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
+
 
   return {
     issuesC,
@@ -29,6 +32,6 @@ export const getIssuesC = async () => {
     posts,
     book,
     issues,
-    therapists,
+    therapists,subscribe
   }
 }

@@ -2,6 +2,7 @@ import {
   getBookBlock,
   getMenu,
   getServicesContent,
+  getSubscribeBlock,
 } from '../../stores/ContentStore'
 import {
   getPopularPosts,
@@ -11,15 +12,17 @@ import {
   getTherapists,
 } from '../../stores/DBStore'
 
-export const getServicesC = async () => {
+export const getServicesC = async (slug:string) => {
   const menu = await getMenu(),
     filters = await getServicesFilters(),
     popvideos = await getPopularVideos(),
     popposts = await getPopularPosts(),
     book = await getBookBlock(),
-    servicesC = await getServicesContent(),
+    servicesC = await getServicesContent(slug),
     services = await getServices(),
-      therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
+;
 
   return {
     servicesC,
@@ -28,6 +31,6 @@ export const getServicesC = async () => {
     popvideos,
     popposts,
     book,
-    services,therapists
+    services,therapists, subscribe
   }
 }

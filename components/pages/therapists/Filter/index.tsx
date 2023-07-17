@@ -24,18 +24,7 @@ const Filter = observer(
       }
     }, [GlobalState.isTheraFilter])
 
-    useEffect(() => {
-      let vh = window.innerHeight * 0.01
-      const s = document.querySelector('.filter-pop')
-      if (!s) return
-      ;(s as any).style.setProperty('--vh', `${vh}px`)
-      window.addEventListener('resize', function (e) {
-        let vh = window.innerHeight * 0.01
-        const s = document.querySelector('.filter-pop')
-        if (!s) return
-        ;(s as any).style.setProperty('--vh', `${vh}px`)
-      })
-    }, [])
+
 
     const getTotal = () => {
       let count = 0

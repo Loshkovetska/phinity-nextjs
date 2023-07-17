@@ -4,6 +4,7 @@ import {
   getIssueContent,
   getMenu,
   getSingleService,
+  getSubscribeBlock,
   getTherapistContent,
 } from '../../stores/ContentStore'
 import {
@@ -21,11 +22,13 @@ export const getServiceC = async (slug: string) => {
   const serviceC = await getSingleService(slug)
   const menu = await getMenu()
     const book = await getBookBlock(),
-        service = await getService(slug),
-        posts = await getPosts(),
-        videos = await getVideos(),
-        therapists = await getTherapists(),
-        home = await getHome()
+      service = await getService(slug),
+      posts = await getPosts(),
+      videos = await getVideos(),
+      therapists = await getTherapists(),
+      home = await getHome(),
+      subscribe = await getSubscribeBlock();
+
   return {
     home,
     serviceC,
@@ -34,6 +37,6 @@ export const getServiceC = async (slug: string) => {
     service,
     therapists,
     posts,
-    videos,
+    videos,subscribe
   }
 }

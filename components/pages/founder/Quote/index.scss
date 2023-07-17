@@ -1,0 +1,81 @@
+.founder-quote {
+  padding: 140px 0;
+  max-width: 846px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -180px;
+  &__sml {
+    font-family: "MADE Mirage";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 132px;
+    line-height: 130%;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #000000;
+  }
+
+  &__text {
+    font-family: "MADE Mirage";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 130%;
+    /* or 42px */
+
+    text-align: center;
+    text-transform: uppercase;
+
+    /* Phinity black */
+
+    color: #222426;
+  }
+
+  &__author {
+    font-family: "Montserrat Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+    text-align: center;
+    color: #222426;
+    margin-top: 24px;
+    display: flex;
+
+    align-items: center;
+  }
+
+  &__img {
+    min-width: 58px;
+    max-width: 58px;
+    height: 58px;
+    margin-right: 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+    margin-top: -64px;
+    &__sml {
+      font-size: 102px;
+      line-height: 130%;
+    }
+    &__text {
+      font-size: 20px;
+      line-height: 130%;
+    }
+    &__author {
+      margin-top: 12px;
+    }
+  }
+}

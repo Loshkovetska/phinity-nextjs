@@ -4,6 +4,7 @@ import {
   getJobContent,
   getMenu,
   getNoFound,
+  getSubscribeBlock,
 } from '../../stores/ContentStore'
 import { getFaqs, getTherapists, getVacancy } from '../../stores/DBStore'
 
@@ -12,14 +13,16 @@ const getJobC = async (slug: string) => {
   const menu = await getMenu(),
     job = await getVacancy(slug),
     home = await getHome(),
-    therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
+
 
   return {
     jobC: response,
     job,
     menu,
     home,
-    therapists,
+    therapists,subscribe
   }
 }
 export default getJobC

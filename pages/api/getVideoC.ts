@@ -2,9 +2,10 @@ import {
   getBookBlock,
   getHome,
   getMenu,
+  getSubscribeBlock,
   getVideoContent,
   getVideosContent,
-} from '../../stores/ContentStore'
+} from "../../stores/ContentStore";
 import {
   getPopularPosts,
   getPopularVideos,
@@ -12,7 +13,7 @@ import {
   getVideo,
   getVideos,
   getVideosFilters,
-} from '../../stores/DBStore'
+} from "../../stores/DBStore";
 
 export const getVideoC = async (slug: string) => {
   const menu = await getMenu(),
@@ -23,9 +24,8 @@ export const getVideoC = async (slug: string) => {
     popposts = await getPopularPosts(),
     videos = await getVideos(),
     home = await getHome(),
-          therapists = await getTherapists()
-
-
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
   return {
     videoC,
     menu,
@@ -33,6 +33,8 @@ export const getVideoC = async (slug: string) => {
     book,
     popvideos,
     popposts,
-    videos,therapists
-  }
-}
+    videos,
+    therapists,
+    subscribe,
+  };
+};

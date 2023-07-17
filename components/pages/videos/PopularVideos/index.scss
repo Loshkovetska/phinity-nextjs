@@ -7,7 +7,7 @@
   z-index: 2;
 
   &__title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 80px;
@@ -24,7 +24,7 @@
   }
 
   &__text {
-    font-family: 'Montserrat Regular';
+    font-family: "Montserrat Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -32,6 +32,12 @@
     color: #222426;
     opacity: 0.8;
     max-width: 604px;
+  }
+
+  .videos__item,
+  .blogs__item,
+  .button {
+    opacity: 1;
   }
 
   &__inline {
@@ -78,21 +84,7 @@
     opacity: 1;
   }
 
-  // .slick-slide {
-  //   width: calc(413px + 20px);
-  //   min-width: calc(413px + 20px);
-  //   padding: 0 20px 0 0px;
-
-  //   &:last-child {
-  //     padding: 0 0px 0 0px;
-  //     width: calc(413px + 0px);
-  //     min-width: calc(413px + 0px);
-  //   }
-  // }
-
   .blogs__item {
-    // width: 630px;
-    // min-width: 630px;
     margin: 0;
   }
 
@@ -100,18 +92,6 @@
     .popular-videos__title {
       margin-bottom: 0;
     }
-
-    // .slick-slide {
-    //   width: calc(630px + 20px);
-    //   min-width: calc(630px + 20px);
-    //   padding: 0 20px 0 0px;
-
-    //   &:last-child {
-    //     padding: 0 0px 0 0px;
-    //     width: calc(630px + 0px);
-    //     min-width: calc(630px + 0px);
-    //   }
-    // }
   }
   .slider__bottom {
     opacity: 1;
@@ -165,22 +145,9 @@
       .popular-videos__title {
         margin-bottom: 0;
       }
-      // .slick-slide {
-      //   width: calc(328px + 8px);
-      //   min-width: calc(328px + 8px);
-      //   padding: 0 20px 0 0px;
-
-      //   &:last-child {
-      //     padding: 0 0px 0 0px;
-      //     width: calc(328px + 0px);
-      //     min-width: calc(328px + 0px);
-      //   }
-      // }
     }
 
     .blogs__item {
-      // width: 328px;
-      // min-width: 328px;
       &-text {
         -webkit-line-clamp: 2;
       }
@@ -189,42 +156,8 @@
 
   @media (max-width: 480px) {
     .videos__item {
-      // min-width: 280px;
-      // width: 280px;
       &-img {
-        max-height: 157px;
       }
-    }
-    // .slick-slide {
-    //   width: calc(280px + 8px);
-    //   min-width: calc(280px + 8px);
-    //   padding: 0 8px 0 0px;
-
-    //   &:last-child {
-    //     padding: 0 0px 0 0px;
-    //     width: calc(280px + 0px);
-    //     min-width: calc(280px + 0px);
-    //   }
-    // }
-  }
-  @media (max-width: 360px) {
-    // .blogs__item {
-    //   width: 267px;
-    //   min-width: 267px;
-    // }
-
-    &.popular-posts {
-      // .slick-slide {
-      //   width: calc(267px + 8px);
-      //   min-width: calc(267px + 8px);
-      //   padding: 0 20px 0 0px;
-
-      //   &:last-child {
-      //     padding: 0 0px 0 0px;
-      //     width: calc(267px + 0px);
-      //     min-width: calc(267px + 0px);
-      //   }
-      // }
     }
   }
 }

@@ -1,44 +1,44 @@
-import { observer } from 'mobx-react'
-import { useEffect, useState } from 'react'
-import classNames from 'classnames'
-import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
-import ImageComponent from '../ImageComponent'
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import classNames from "classnames";
+import { useWindowDimensions } from "../../../hooks/getWindowDimensions";
+import ImageComponent from "../ImageComponent";
 
-import Logo from '../../../assets/logo.svg'
-import { useContentState } from '../../../hooks/RootStoreProvider'
+import Logo from "../../../assets/logo.svg";
+import { useContentState } from "../../../hooks/RootStoreProvider";
 const Footer = observer(() => {
-  const { width } = useWindowDimensions()
-  const { menu, therapists } = useContentState()
+  const { width } = useWindowDimensions();
+  const { menu, therapists } = useContentState();
 
   useEffect(() => {
     setTimeout(() => {
-      const footer = document.querySelector('.footer')
+      const footer = document.querySelector(".footer");
 
-      if (!footer) return
+      if (!footer) return;
 
       const observer = new window.IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            ;(footer as any)?.classList.add('animated')
+            (footer as any)?.classList.add("animated");
           } else {
           }
         },
         {
           root: null,
           threshold: 0.1,
-        },
-      )
+        }
+      );
 
-      observer.observe(footer)
-    }, 300)
-  }, [])
+      observer.observe(footer);
+    }, 300);
+  }, []);
 
-  const { links } = useContentState()
-  let main = '',
-    therapist = ''
+  const { links } = useContentState();
+  let main = "",
+    therapist = "";
   if (links) {
-    main = links?.find((l: any) => l.id == 2)?.link
-    therapist = links?.find((l: any) => l.id == 268)?.link
+    main = links?.find((l: any) => l.id == 2)?.link;
+    therapist = links?.find((l: any) => l.id == 268)?.link;
   }
 
   return (
@@ -55,7 +55,7 @@ const Footer = observer(() => {
               <div
                 className="footer__text grey link"
                 onClick={() => {
-                  window.location.href = `tel:${(menu as any)?.phone}`
+                  window.location.href = `tel:${(menu as any)?.phone}`;
                 }}
               >
                 {(menu as any)?.phone}
@@ -75,7 +75,7 @@ const Footer = observer(() => {
             <a
               href={
                 n.link.includes(therapist)
-                  ? therapist + '/' + therapists[0].link
+                  ? therapist + "/" + therapists[0].link
                   : n.link
               }
               className="footer__text link"
@@ -87,12 +87,21 @@ const Footer = observer(() => {
         </div>
         <div className="footer__col mr0 w50p">
           <div className="footer__sub-title">{(menu as any).infoTitle}</div>
-          {}
           {(menu as any).info?.map((n: any, i: number) => (
             <a href={n.link} className="footer__text link" key={i}>
               {n.title}
             </a>
           ))}
+        </div>
+        <div className="footer__col mr0 w50p">
+          <div className="footer__sub-title">{(menu as any).locationTitle}</div>
+          {(menu as any).locations
+            .sort((c: any, b: any) => c.title.localeCompare(b.title))
+            ?.map((n: any, i: number) => (
+              <a href={n.link} className="footer__text link" key={i}>
+                {n.title}
+              </a>
+            ))}
         </div>
         <div className="footer__col mr0 grow">
           <div className="footer__sub-title">{(menu as any).followTitle}</div>
@@ -103,7 +112,7 @@ const Footer = observer(() => {
                 key={i}
                 className="footer__text social"
                 href={f.link}
-                target={'__blank'}
+                target={"__blank"}
                 rel="noreferrer"
                 title={f.link}
               >
@@ -127,7 +136,7 @@ const Footer = observer(() => {
               </div>
             </>
           )}
-        </div>{' '}
+        </div>{" "}
         {width <= 550 && (
           <>
             <div className="footer__col w50p">
@@ -138,7 +147,7 @@ const Footer = observer(() => {
               <div
                 className="footer__text link"
                 onClick={() => {
-                  window.location.href = `tel:${(menu as any)?.phone}`
+                  window.location.href = `tel:${(menu as any)?.phone}`;
                 }}
               >
                 {(menu as any)?.phone}
@@ -172,17 +181,7 @@ const Footer = observer(() => {
           </>
         )}
       </div>
-      {width <= 550 && (
-        <div className="footer__sub-title mb16">
-          {(menu as any)?.locationTitle}
-        </div>
-      )}
-      <div
-        className="footer__text grey link-locat"
-        dangerouslySetInnerHTML={{
-          __html: (menu as any)?.shedule,
-        }}
-      ></div>
+      <div className="footer__text grey link-locat"></div>
 
       <div className="footer__row last">
         <div className="footer__sub-text copy">
@@ -194,8 +193,8 @@ const Footer = observer(() => {
             <a
               href={c.link}
               className={classNames(
-                'footer__sub-text link',
-                i + 1 != (menu as any)?.bottomLinks.length && 'mr32',
+                "footer__sub-text link",
+                i + 1 != (menu as any)?.bottomLinks.length && "mr32"
               )}
               key={i}
             >
@@ -205,7 +204,7 @@ const Footer = observer(() => {
         </div>
       </div>
     </footer>
-  )
-})
+  );
+});
 
-export default Footer
+export default Footer;

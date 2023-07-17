@@ -1,24 +1,29 @@
-import { observer } from 'mobx-react'
-import Script from 'next/script'
+import { observer } from "mobx-react";
+import Script from "next/script";
 
 const HeaderSeo = observer(
   ({
     metas,
     plugins,
-    page = 'page',
+    page = "page",
     canonical,
   }: {
-    metas: any
-    plugins: any
-    page?: string
-    canonical?: string
+    metas: any;
+    plugins: any;
+    page?: string;
+    canonical?: string;
   }) => {
     return (
       <>
         <meta name="description" content={metas?.og_description} />
         <meta name="author" content="Rehanna Kauser" />
-        {page == 'page' ? (
-          <link rel="canonical" href={metas?.og_url.replaceAll('admin.', '')} />
+        {page == "page" ? (
+          <link
+            rel="canonical"
+            href={metas?.og_url
+              ?.replaceAll("admin.", "")
+              ?.replaceAll("/founders/", "/")}
+          />
         ) : (
           <link rel="canonical" href={canonical} />
         )}
@@ -32,7 +37,7 @@ const HeaderSeo = observer(
         <meta property="og:description" content={metas?.og_description} />
         <meta
           property="og:url"
-          content={metas?.og_url.replaceAll('admin.', '')}
+          content={metas?.og_url?.replaceAll("admin.", "")}
         />
         <meta property="og:site_name" content={metas?.og_site_name} />
         <link
@@ -44,8 +49,8 @@ const HeaderSeo = observer(
 
         <Script />
       </>
-    )
-  },
-)
+    );
+  }
+);
 
-export default HeaderSeo
+export default HeaderSeo;

@@ -1,5 +1,4 @@
 import SliderArrow  from '../../../assets/caret-right.svg'
-import More  from '../../../assets/more.svg'
 import { useEffect, useRef, useState } from 'react'
 import { observer } from 'mobx-react'
 import classNames from 'classnames'
@@ -24,7 +23,7 @@ const Pagination = observer(
     const paginationRange = usePagination({
       currentPage: page,
       totalCount: getTotal(),
-      siblingCount: 2,
+      siblingCount: 1,
       pageSize: itemsPerPage,
     })
 

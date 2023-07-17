@@ -3,15 +3,17 @@ import {
   getBookBlock,
   getContactContent,
   getMenu,
-} from '../../stores/ContentStore'
-import { getTherapists } from '../../stores/DBStore'
+  getSubscribeBlock,
+} from "../../stores/ContentStore";
+import { getTherapists } from "../../stores/DBStore";
 
 const getContact = async () => {
   const response = await getContactContent(),
     menu = await getMenu(),
     book = await getBookBlock(),
-    therapists = await getTherapists()
-  const about = await getAbout()
+    therapists = await getTherapists();
+  const about = await getAbout(),
+    subscribe = await getSubscribeBlock();
 
   return {
     contact: response,
@@ -19,7 +21,8 @@ const getContact = async () => {
     book,
     therapists,
     about,
-  }
-}
+    subscribe,
+  };
+};
 
-export default getContact
+export default getContact;

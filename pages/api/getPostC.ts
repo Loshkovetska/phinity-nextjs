@@ -3,6 +3,7 @@ import {
   getHome,
   getMenu,
   getSinglePost,
+  getSubscribeBlock,
 } from '../../stores/ContentStore'
 import {
   getPopularPosts,
@@ -21,7 +22,9 @@ export const getPostC = async (slug: string) => {
     popvideos = await getPopularVideos(),
     popposts = await getPopularPosts(),
     postC = await getSinglePost(slug),
-    therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
+
 
   const post = posts?.find((p: any) => p.link == slug)
 
@@ -35,6 +38,6 @@ export const getPostC = async (slug: string) => {
     popvideos,
     popposts,
     therapists,
-    home,
+    home,subscribe
   }
 }

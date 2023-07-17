@@ -1,44 +1,62 @@
 .videos-list {
   padding-top: 140px;
-  // max-width: 1440px;
-  // margin: 0 auto;
   display: flex;
   flex-direction: column;
+
+  & + .blog-content__aside-book {
+    display: none;
+
+    @media (max-width: 1024px) {
+      display: flex;
+    }
+  }
   &__container {
     display: flex;
     justify-content: space-between;
   }
 
   &__left {
-    margin-right: 96px;
+    margin-right: 126px;
     max-width: 1440px;
     flex-grow: 1;
     width: 100%;
   }
 
   &__count {
-    font-family: 'Montserrat Regular';
+    font-family: "Montserrat Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 140%;
     margin-right: 49px;
   }
-
-  @media (max-width: 1600px) {
-    .blog-content__aside {
-      min-width: 306px;
-      width: 306px;
+  .blog-content__aside {
+    .blogs__item {
+      min-width: auto;
+      max-width: none;
+      padding: 24px 20px;
+      margin: 0;
+      .blogs__item-text > p {
+        -webkit-line-clamp: 3;
+      }
     }
 
-    &__left {
-      margin-right: 48px;
+    .videos__item {
+      &-img {
+        height: 232px;
+      }
     }
   }
 
   @media (max-width: 1024px) {
     &__left {
       margin-right: 0;
+    }
+    .videos__item {
+      &-img {
+        height: 27vw;
+        max-height: 278px;
+      }
     }
   }
   &__top {
@@ -75,7 +93,7 @@
   }
 
   &__shown {
-    font-family: 'Montserrat Regular';
+    font-family: "Montserrat Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -92,7 +110,7 @@
 
     &__count {
       margin-right: 0;
-      font-family: 'MADE Mirage';
+      font-family: "MADE Mirage";
 
       font-weight: 400;
       font-size: 30px;
@@ -114,13 +132,6 @@
       font-size: 14px;
       line-height: 150%;
     }
-
-    .videos__item {
-      &-img {
-        max-height: 338px;
-        height: 300px;
-      }
-    }
   }
 
   @media (max-width: 760px) {
@@ -131,13 +142,6 @@
   @media (max-width: 480px) {
     &__list {
       column-gap: 0;
-    }
-
-    .videos__item {
-      &-img {
-        max-height: 190px;
-        height: 300px;
-      }
     }
 
     &__bottom {

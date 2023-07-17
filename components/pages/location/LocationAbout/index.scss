@@ -1,0 +1,81 @@
+.locate-about {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 140px;
+
+  &__title {
+    font-family: "MADE Mirage";
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 110%;
+    color: #222426;
+    margin-bottom: 56px;
+  }
+
+  .our-clinic__list {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .our-clinic__item {
+    opacity: 1;
+  }
+
+  &__list {
+    margin-bottom: 32px;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 56px;
+    }
+
+    &-title {
+      font-family: "MADE Mirage";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 150%;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    &-text {
+      font-family: "Montserrat Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 160%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 64px;
+
+    &__title {
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 120%;
+      margin-bottom: 32px;
+    }
+
+    &__item {
+      &-title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 130%;
+        margin-bottom: 24px;
+      }
+
+      &-text {
+        font-size: 16px;
+        line-height: 150%;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

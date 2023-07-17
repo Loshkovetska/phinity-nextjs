@@ -128,36 +128,6 @@ const CanHelp = observer(() => {
     }
   }, [heightBlock, width, scrollY, height])
 
-  // useEffect(() => {
-  //   if (width > 1120) {
-  //     const smooth = document.querySelector('.smooth')
-  //     const vect = document.querySelector(`.can-help__neiro`)
-  //     var bodyRect = smooth!.getBoundingClientRect(),
-  //       vectRect = vect!.getBoundingClientRect(),
-  //       offset = vectRect.top - bodyRect.top,
-  //       offsetBottom = bottomBlock - vectRect!.height
-
-  //     let value =
-  //       width > 1440
-  //         ? ((height - vectRect.height) / 2) * -1
-  //         : (height - vectRect.height) / 2 - 100
-
-  //     window.addEventListener('scroll', () => {
-  //       if (scrollY < offset - (height - vectRect.height) / 2) {
-  //         ;(vect as HTMLElement).style.top = `${0}px`
-  //       }
-  //       if (
-  //         scrollY >= offset - (height - vectRect.height) / 2 &&
-  //         scrollY <= offsetBottom + value
-  //       ) {
-  //         ;(vect as HTMLElement).style.top = `${
-  //           (height - vectRect.height) / 2
-  //         }px`
-  //       }
-  //     })
-  //   }
-  // }, [bottomBlock, height, width, scrollY])
-
   useEffect(() => {
     const smooth = document.querySelector('.smooth')
     const row = smooth!.querySelector('.can-help__row')
@@ -205,27 +175,27 @@ const CanHelp = observer(() => {
               .map((t: any, i: number) => (
                 <div
                   className={classNames(
-                    'can-help__locator',
+                    "can-help__locator",
                     `loc${i + 1}`,
-                    !i && `active`,
+                    !i && `active`
                   )}
                   key={i}
                   onClick={() => {
                     let block = document.querySelectorAll(
-                      '.can-help__block-col',
-                    )
+                      ".can-help__block-col"
+                    );
                     if (block) {
-                      const smooth = document.querySelector('.smooth')
-                      if (!smooth) return
-                      const rect = smooth.getBoundingClientRect().top
+                      const smooth = document.querySelector(".smooth");
+                      if (!smooth) return;
+                      const rect = smooth.getBoundingClientRect().top;
                       window.scrollTo({
                         top: block[i].getBoundingClientRect().top - rect - 100,
-                        behavior: 'smooth',
-                      })
+                        behavior: "smooth",
+                      });
                     }
 
                     if (width < 1120) {
-                      changeLocate(i)
+                      changeLocate(i);
                     }
                   }}
                 >
@@ -238,7 +208,7 @@ const CanHelp = observer(() => {
         <div className="can-help__block">
           {issue.help.list?.map((l: any, id: number) => (
             <div
-              className={classNames('can-help__block-col', !id && 'show')}
+              className={classNames("can-help__block-col", !id && "show")}
               key={id}
             >
               <div className="can-help__block-title">{l.title}</div>
@@ -257,6 +227,6 @@ const CanHelp = observer(() => {
         </div>
       </div>
     </section>
-  )
+  );
 })
 export default CanHelp

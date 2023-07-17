@@ -1,18 +1,26 @@
-import { DOMAIN } from '../../mocks/doman'
-import { getAbout, getBookBlock, getMenu } from '../../stores/ContentStore'
-import { getReviews, getTherapists } from '../../stores/DBStore'
+import { DOMAIN } from "../../mocks/doman";
+import {
+  getAbout,
+  getBookBlock,
+  getMenu,
+  getSubscribeBlock,
+} from "../../stores/ContentStore";
+import { getTherapists } from "../../stores/DBStore";
 
 const getAboutContent = async () => {
-  const response = await getAbout()
-  const menu = await getMenu()
+  const response = await getAbout();
+  const menu = await getMenu();
   const book = await getBookBlock(),
-      therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
 
   return {
     dt: response,
     menu,
-    book,therapists
-  }
-}
+    book,
+    therapists,
+    subscribe,
+  };
+};
 
-export default getAboutContent
+export default getAboutContent;

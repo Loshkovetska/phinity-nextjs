@@ -9,6 +9,10 @@
     }
   }
 
+  ul,
+  li {
+    margin-left: 0;
+  }
   &-arrow {
     cursor: pointer;
     width: 48px;

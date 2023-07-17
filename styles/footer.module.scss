@@ -32,7 +32,7 @@
   }
 
   &__text {
-    font-family: 'Montserrat Regular';
+    font-family: "Montserrat Regular";
     text-decoration: none;
     font-style: normal;
     font-weight: 400;
@@ -71,7 +71,7 @@
       a::before {
         background: #222426;
         bottom: -8px;
-        content: '';
+        content: "";
         height: 2px;
         left: 0;
         position: absolute;
@@ -89,10 +89,10 @@
       cursor: pointer;
 
       line-height: 0;
-      margin-bottom: 0;
+      margin-bottom: 8px;
       &:not(:last-child) {
         margin-right: 8px;
-        margin-bottom: 0;
+        margin-bottom: 8px;
       }
     }
     &.social {
@@ -119,7 +119,7 @@
       width: fit-content;
       position: relative;
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         bottom: -8px;
@@ -138,7 +138,7 @@
   }
 
   &__sub-title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -158,7 +158,7 @@
 
   &__sub-text {
     text-decoration: none;
-    font-family: 'Montserrat Regular';
+    font-family: "Montserrat Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -173,7 +173,7 @@
         position: absolute;
         left: 0;
         bottom: -8px;
-        content: '';
+        content: "";
         width: 0;
         height: 2px;
         background: #222426;
@@ -230,6 +230,7 @@
         }
         &.w50p {
           width: 50%;
+          min-width: 140px;
         }
       }
     }
@@ -241,7 +242,7 @@
     }
 
     &__sub-title {
-      font-family: 'Montserrat SemiBold';
+      font-family: "Montserrat SemiBold";
       font-style: normal;
       font-weight: 600;
       font-size: 12px;
@@ -258,6 +259,11 @@
 
     &__text {
       line-height: 150%;
+
+      &.link-locat {
+        padding-bottom: 0;
+      }
+
       &:not(:last-child) {
         margin-bottom: 16px;
       }
@@ -278,9 +284,9 @@
     }
   }
 
-  @media (max-width: 330px) {
-    &__row:first-child {
-      flex-direction: column;
-    }
-  }
+  // @media (max-width: 330px) {
+  //   &__row:first-child {
+  //     flex-direction: column;
+  //   }
+  // }
 }

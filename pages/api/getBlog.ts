@@ -2,15 +2,17 @@ import {
   getBlogContent,
   getBookBlock,
   getMenu,
-} from '../../stores/ContentStore'
+  getSubscribeBlock,
+} from "../../stores/ContentStore";
 import {
   getBlogCategories,
+  getLocations,
   getPopularPosts,
   getPopularVideos,
   getPosts,
   getTherapists,
   getVideos,
-} from '../../stores/DBStore'
+} from "../../stores/DBStore";
 
 export const getBlog = async () => {
   const menu = await getMenu(),
@@ -21,8 +23,9 @@ export const getBlog = async () => {
     popvideos = await getPopularVideos(),
     popposts = await getPopularPosts(),
     blog = await getBlogContent(),
-    therapists = await getTherapists()
-
+    therapists = await getTherapists(),
+    locations = await getLocations(),
+    subscribe = await getSubscribeBlock();
   return {
     blog,
     menu,
@@ -33,5 +36,7 @@ export const getBlog = async () => {
     popvideos,
     popposts,
     therapists,
-  }
-}
+    locations,
+    subscribe,
+  };
+};

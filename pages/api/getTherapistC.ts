@@ -1,6 +1,7 @@
 import {
   getBookBlock,
   getMenu,
+  getSubscribeBlock,
   getTherapistContent,
 } from '../../stores/ContentStore'
 import { getTherapist, getTherapists } from '../../stores/DBStore'
@@ -10,12 +11,14 @@ export const getTherapistC = async (slug: string) => {
   const menu = await getMenu()
   const book = await getBookBlock(),
     therapist = await getTherapist(slug),
-          therapists = await getTherapists()
+    therapists = await getTherapists(),
+    subscribe = await getSubscribeBlock();
+
 
   return {
     therapistC,
     menu,
     book,
-    therapist,therapists
+    therapist,therapists, subscribe
   }
 }

@@ -1,0 +1,102 @@
+.bubble {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  &__vector {
+    position: absolute;
+    animation-duration: 20s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-name: move;
+    &.w31 {
+      width: 31px;
+      height: 31px;
+      top: 64px;
+      right: 397px;
+    }
+    &.w25 {
+      width: 25px;
+      height: 25px;
+      bottom: 0;
+      right: -74px;
+    }
+    &.w71 {
+      width: 71px;
+      height: 71px;
+      bottom: 33px;
+      left: calc(50% - 71px / 2);
+    }
+    &.w72 {
+      width: 72px;
+      height: 72px;
+      bottom: 130px;
+      left: 130px;
+    }
+    &.w120 {
+      width: 120px;
+      height: 120px;
+      top: 0;
+      left: calc(50% - 60px);
+    }
+    &.w185 {
+      width: 185px;
+      height: 185px;
+      left: 277px;
+      top: 277px;
+    }
+    &.w254 {
+      width: 225px;
+      height: 225px;
+      right: -60px;
+      bottom: 158px;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    &__vector {
+      &.w254,
+      &.w72,
+      &.w120,
+      &.w185 {
+        display: none;
+      }
+
+      &.w71 {
+        width: 70px;
+        height: 70px;
+        left: 6px;
+        bottom: calc(50% - 150px);
+      }
+      &.w25 {
+        width: 15px;
+        height: 15px;
+        bottom: auto;
+        right: -13px;
+        top: 0;
+      }
+      &.w35 {
+        width: 35px;
+        height: 35px;
+      }
+      &.w31 {
+        width: 25px;
+        height: 25px;
+        bottom: 60px;
+        top: auto;
+        right: 0;
+      }
+    }
+  }
+}

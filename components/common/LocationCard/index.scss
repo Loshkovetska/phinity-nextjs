@@ -1,0 +1,62 @@
+.loc-card {
+  border: 1px solid #222426;
+  display: flex;
+  flex-direction: column;
+
+  &__img {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    height: 22.223vw;
+
+    max-height: 320px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 1s ease-in-out all;
+    }
+  }
+
+  &__title {
+    font-family: "MADE Mirage";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 130%;
+    transition: 1s ease-out all;
+    text-underline-offset: 3px;
+  }
+
+  &__content {
+    padding: 32px;
+  }
+
+  &:hover {
+    .loc-card__img img {
+      transform: scale(1.1);
+    }
+
+    .loc-card__title {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__title {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 130%;
+    }
+
+    &__content {
+      padding: 16px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__img {
+      height: 46vw;
+    }
+  }
+}

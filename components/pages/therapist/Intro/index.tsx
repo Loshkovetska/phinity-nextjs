@@ -5,6 +5,8 @@ import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 import ImageComponent from '../../../common/ImageComponent'
 import Vector from '../../../../assets/Ellipse 67.svg'
+import ScrollDown from '../../../../assets/post/arrow.svg'
+
 const Intro = observer(({ therapist }: { therapist: any }) => {
   const content = useContentState()
   const { width } = useWindowDimensions()
@@ -57,6 +59,7 @@ const Intro = observer(({ therapist }: { therapist: any }) => {
               {content.therapist?.position}
             </div>
             <ReviewWidget />
+
             <div className="therapist-intro__col-bottom">
               <a
                 rel="noreferrer"
@@ -81,6 +84,11 @@ const Intro = observer(({ therapist }: { therapist: any }) => {
             />
           </div>{' '}
         </div>
+      </div>
+      <div className="intro__scrolldown">
+        <ScrollDown />
+        <ScrollDown />
+        <ScrollDown />
       </div>
     </section>
   )

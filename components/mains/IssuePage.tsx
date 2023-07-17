@@ -1,40 +1,40 @@
-import { observer } from 'mobx-react'
-import { useEffect, useState } from 'react'
-import { Service } from '../../api/mocks/services'
-import References from '../common/References'
-import BookBlock from '../pages/home/BookBlock'
-import Reviews from '../pages/home/Reviews'
-import Therapists from '../pages/home/Therapists'
-import CanHelp from '../pages/issue/CanHelp'
-import Services from '../pages/issue/Services'
-import Symptoms from '../pages/issue/Symptoms'
-import AboutService from '../pages/service/AboutService'
-import TherapyHelp from '../pages/service/TherapyHelp'
-import Intro from '../pages/services/Intro'
-import PopularPosts from '../pages/video/PopularPosts'
-import PopularVideos from '../pages/videos/PopularVideos'
-import GlobalState from '../../stores/GlobalState'
-import { useWindowDimensions } from '../../hooks/getWindowDimensions'
-import Layout from '../common/Layout'
-import { getTherapists } from '../../stores/DBStore'
-import { useContentState } from '../../hooks/RootStoreProvider'
-import Subscribe from '../common/Subscribe'
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { Service } from "../../api/mocks/services";
+import References from "../common/References";
+import BookBlock from "../pages/home/BookBlock";
+import Reviews from "../pages/home/Reviews";
+import Therapists from "../pages/home/Therapists";
+import CanHelp from "../pages/issue/CanHelp";
+import Services from "../pages/issue/Services";
+import Symptoms from "../pages/issue/Symptoms";
+import AboutService from "../pages/service/AboutService";
+import TherapyHelp from "../pages/service/TherapyHelp";
+import Intro from "../pages/services/Intro";
+import PopularPosts from "../pages/video/PopularPosts";
+import PopularVideos from "../pages/videos/PopularVideos";
+import { useWindowDimensions } from "../../hooks/getWindowDimensions";
+import Layout from "../common/Layout";
+import { getTherapists } from "../../stores/DBStore";
+import { useContentState } from "../../hooks/RootStoreProvider";
+import Subscribe from "../common/Subscribe";
+import TherapyHelpVideos from "../common/TherapyHelpVideos";
 
 const IssuePage = observer(({ data }: { data: any }) => {
-  const { width } = useWindowDimensions()
-  const { links: linksL } = useContentState()
-  const [dt, setDt] = useState([])
+  const { width } = useWindowDimensions();
+  const { links: linksL } = useContentState();
+  const [dt, setDt] = useState([]);
   useEffect(() => {
     getTherapists().then((res) => {
-      setDt(res)
-    })
-  }, [])
+      setDt(res);
+    });
+  }, []);
 
-  let main = '',
-    issuesL = ''
+  let main = "",
+    issuesL = "";
   if (linksL) {
-    main = linksL.find((l: any) => l.id == 2)?.link
-    issuesL = linksL.find((l: any) => l.id == 266)?.link
+    main = linksL.find((l: any) => l.id == 2)?.link;
+    issuesL = linksL.find((l: any) => l.id == 266)?.link;
   }
 
   const links = [
@@ -48,15 +48,15 @@ const IssuePage = observer(({ data }: { data: any }) => {
     },
     {
       title: `${data.issue?.title}`,
-      link: '/',
+      link: "/",
     },
-  ]
+  ];
 
-  let services: Array<Service> = []
+  let services: Array<Service> = [];
 
   if (data.issueC.services) {
-    services = JSON.parse(JSON.stringify(data.issueC.services))
-    services = services.sort((a, b) => a.title.localeCompare(b.title))
+    services = JSON.parse(JSON.stringify(data.issueC.services));
+    services = services.sort((a, b) => a.title.localeCompare(b.title));
   }
   return (
     <>
@@ -78,6 +78,8 @@ const IssuePage = observer(({ data }: { data: any }) => {
         <CanHelp />
         <Services title={data.issueC.serviceTitle} dt={data.issueC.services} />
         <TherapyHelp dt={data.issueC.therapyHelp} home={data.home} />
+        <TherapyHelpVideos dt={data.issueC.therapyVideos} />
+
         <Therapists
           dt={dt}
           therapist={data.issueC.therapist}
@@ -96,7 +98,7 @@ const IssuePage = observer(({ data }: { data: any }) => {
         <Subscribe />
       </Layout>
     </>
-  )
-})
+  );
+});
 
-export default IssuePage
+export default IssuePage;

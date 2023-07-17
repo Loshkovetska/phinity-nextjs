@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import BookBlock from '../pages/home/BookBlock'
-import DBStore, { filterTherapists, getTherapists } from '../../stores/DBStore'
+import DBStore, { filterTherapists, getTherapists, getTherapistsAll } from '../../stores/DBStore'
 import Reviews from '../pages/home/Reviews'
 import Therapists from '../pages/therapists/Therapists'
 import { observer } from 'mobx-react'
@@ -14,10 +14,11 @@ const TherapistsPage = observer(({ dt }: { dt: any }) => {
   const content = useContentState()
 
   useEffect(() => {
-    getTherapists().then((res) => {
+    getTherapistsAll().then((res) => {
       DBStore.therapists = res
     })
   }, [])
+
 
   return (
     <>

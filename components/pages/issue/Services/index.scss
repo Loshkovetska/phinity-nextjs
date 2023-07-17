@@ -19,6 +19,34 @@
     z-index: 1;
   }
 
+  &__filter {
+    display: flex;
+    margin-bottom: 54px;
+    &-item {
+      padding: 11px 24px;
+      border-radius: 32px;
+      font-family: "Montserrat Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 160%;
+      color: rgba(#222426, 0.8);
+      transition: 0.3s ease-in-out all;
+      border: 1px solid #222426;
+      cursor: pointer;
+      &:hover,
+      &.active {
+        background: #0033cc;
+        border: 1px solid #0033cc;
+        color: rgba(#fff, 0.8);
+      }
+      margin-top: 16px;
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+  }
+
   &__bottom {
     margin-top: 66px;
     display: flex;
@@ -42,7 +70,7 @@
   }
 
   &__title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 80px;

@@ -6,7 +6,7 @@
   max-width: 1440px;
   margin: 0 auto;
   &__title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 80px;
@@ -83,13 +83,13 @@
     max-width: 250px;
     min-width: 222px;
     display: flex;
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
     transition: 0.5s ease-out color;
-    color: #0033CC;
+    color: #0033cc;
 
     &-point {
       margin-top: 8px;
@@ -164,7 +164,7 @@
   }
 
   &__block-title {
-    font-family: 'MADE Mirage';
+    font-family: "MADE Mirage";
     font-style: normal;
     font-weight: 500;
     font-size: 32px;
@@ -183,7 +183,7 @@
     display: flex;
     align-items: flex-start;
     &-num {
-      font-family: 'MADE Mirage';
+      font-family: "MADE Mirage";
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -196,7 +196,7 @@
     }
     &-text {
       margin-top: -2px;
-      font-family: 'Montserrat Regular';
+      font-family: "Montserrat Regular";
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -283,14 +283,16 @@
     }
     &__wrapper {
       height: auto;
-      display: none;
+      // display: none;
+      justify-content: center;
+      width: 100%;
     }
     &__block-title {
       max-width: 415px;
     }
 
     &__neiro {
-      display: none;
+      top: 0 !important;
     }
 
     &__block {
@@ -334,6 +336,50 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 150%;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 64px;
+    &__neiro {
+      width: 100%;
+      height: 75vw;
+      min-width: auto;
+      margin-bottom: 32px;
+    }
+
+    &__wrapper {
+      width: calc(100% + 32px);
+      margin: 0 -16px;
+    }
+
+    &__locator {
+      font-size: 16px;
+      line-height: 140%;
+      max-width: 190px;
+      min-width: 100px;
+      &-point {
+        margin-top: 6px;
+        margin-right: 8px;
+      }
+      &.active .can-help__locator-point {
+        transform: scale(1.1);
+      }
+      &.loc1 {
+        top: 3%;
+        right: auto;
+        left: 36%;
+      }
+      &.loc2 {
+        left: 15%;
+        top: 41%;
+      }
+      &.loc3 {
+        left: 49%;
+        right: auto;
+        top: 76%;
+        bottom: auto;
       }
     }
   }

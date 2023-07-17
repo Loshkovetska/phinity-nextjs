@@ -5,8 +5,8 @@
   padding: 4px 0;
   max-width: 1440px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
+  // position: relative;
+  // z-index: 2;
   svg:not(.header__logo) {
     min-width: 24px;
     height: 24px;
@@ -39,7 +39,7 @@
   &__search {
     width: 24px;
     height: 24px;
-    margin-right: 37px;
+    margin-right: 24px;
     cursor: pointer;
 
     position: relative;
@@ -75,7 +75,7 @@
     }
 
     &__search {
-      margin-right: 48px;
+      margin-right: 24px;
     }
   }
 
@@ -92,6 +92,8 @@
   @media (max-width: 1024px) {
     height: 60px;
     justify-content: space-between;
+    position: relative;
+    z-index: 2;
     &__search {
       margin-right: 0;
     }

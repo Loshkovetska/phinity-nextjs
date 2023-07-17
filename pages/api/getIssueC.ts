@@ -3,6 +3,7 @@ import {
   getHome,
   getIssueContent,
   getMenu,
+  getSubscribeBlock,
   getTherapistContent,
 } from '../../stores/ContentStore'
 import {
@@ -21,7 +22,9 @@ export const getIssueC = async (slug: string) => {
     popvideos = await getPopularVideos(),
     popposts = await getPopularPosts(),
     therapists = await getTherapists(),
-    home = await getHome()
+    home = await getHome(),
+    subscribe = await getSubscribeBlock();
+
   return {
     home,
     issueC,
@@ -30,6 +33,6 @@ export const getIssueC = async (slug: string) => {
     issue,
     therapists,
     popvideos,
-    popposts,
+    popposts,subscribe
   }
 }

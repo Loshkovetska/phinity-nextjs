@@ -1,84 +1,79 @@
-import { observer } from 'mobx-react'
-import { useEffect, useState } from 'react'
-import { useContentState } from '../../../hooks/RootStoreProvider'
-import Button from '../Button'
-import SMS from '../../../assets/contact/Component 95 (1).svg'
-import { useWindowDimensions } from '../../../hooks/getWindowDimensions'
-import { useWindowScroll } from '../../../hooks/getWindowScroll'
-import { DOMAIN } from '../../../mocks/doman'
-import Warn from '../../../assets/contact/warn.svg'
-import { useRouter } from 'next/router'
-import classNames from 'classnames'
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { useContentState } from "../../../hooks/RootStoreProvider";
+import Button from "../Button";
+import SMS from "../../../assets/contact/Component 95 (1).svg";
+import { useWindowDimensions } from "../../../hooks/getWindowDimensions";
+import { useWindowScroll } from "../../../hooks/getWindowScroll";
+import { DOMAIN } from "../../../mocks/doman";
+import Warn from "../../../assets/contact/warn.svg";
+import { useRouter } from "next/router";
+import classNames from "classnames";
 
 const Subscribe = observer(() => {
-  const { width, height } = useWindowDimensions()
-  const { scrollY } = useWindowScroll()
-  const { asPath } = useRouter()
-  const [value, setValue] = useState('')
-  const [error, setError] = useState('')
-  const { links } = useContentState()
-  const content = {
-    title: 'Subscribe to our newsletters',
-    text: 'You will be the first to be notified of updates to our website',
-    emailPlaceholder: 'Email ',
-    buttonTitle: 'SUBSCRIBE',
-  }
+  const { width, height } = useWindowDimensions();
+  const { scrollY } = useWindowScroll();
+  const { asPath } = useRouter();
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
+  const { links } = useContentState();
+  const content = useContentState().subscribe;
 
   useEffect(() => {
-    const smooth = document.querySelector('.smooth')
+    const smooth = document.querySelector(".smooth");
 
-    if (!smooth) return
-    const issues = smooth!.querySelector('.subscribe')
-    if (!issues) return
+    if (!smooth) return;
+    const issues = smooth!.querySelector(".subscribe");
+    if (!issues) return;
 
     var bodyRect = smooth!.getBoundingClientRect(),
       elemRect = issues!.getBoundingClientRect(),
-      offset = elemRect.top - bodyRect.top
+      offset = elemRect.top - bodyRect.top;
 
     if (scrollY > offset - (height > 1920 ? 1000 : 600)) {
-      issues?.classList.add('animated')
+      issues?.classList.add("animated");
     }
-  }, [scrollY, height])
+  }, [scrollY, height]);
 
   const emailValidate = (email: string) => {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-  }
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+  };
   const send = () => {
     let ers = !value.length
-      ? 'Fill field'
+      ? "Fill field"
       : emailValidate(value)
-      ? ''
-      : 'Incorrect email'
+      ? ""
+      : "Incorrect email";
     if (ers.length) {
-      setError(ers)
-      return
+      setError(ers);
+      return;
     }
-    const fd = new FormData()
-    fd.append('status', 'subscribe')
-    fd.append('email', value)
+    const fd = new FormData();
+    fd.append("status", "subscribe");
+    fd.append("email", value);
     fetch(`${DOMAIN}react/`, {
-      method: 'POST',
+      method: "POST",
       body: fd,
     }).then(() => {
-      setError('')
-      setValue('')
-    })
-  }
-  let blog = '',
-    vacancies = ''
+      setError("");
+      setValue("");
+    });
+  };
+  let blog = "",
+    vacancies = "";
   if (links) {
-    blog = links.find((l: any) => l.id == 272)?.link
-    vacancies = links.find((l: any) => l.id == 262)?.link
+    blog = links.find((l: any) => l.id == 272)?.link;
+    vacancies = links.find((l: any) => l.id == 262)?.link;
   }
 
   return (
     <section
       className={classNames(
-        'subscribe',
-        asPath.includes(blog) && asPath != blog + '/' && 'post',
+        "subscribe",
+        asPath.includes(blog) && asPath != blog + "/" && "post",
         !asPath.includes(blog) &&
-          !(asPath.includes(vacancies) && asPath != vacancies + '/') &&
-          'info-pages',
+          !(asPath.includes(vacancies) && asPath != vacancies + "/") &&
+          "info-pages"
       )}
     >
       <div className="subscribe__container">
@@ -101,23 +96,23 @@ const Subscribe = observer(() => {
             />
           </div>
           <div className="contact-block__error">
-            {error.length ? <Warn /> : ''}
+            {error.length ? <Warn /> : ""}
             {error}
           </div>
           <Button
             classname="button light-blue"
             text={<>{content.buttonTitle}</>}
             click={send}
-            type={'submit'}
+            type={"submit"}
           />
         </form>
         <div className="contact-block__error">
-          {error.length ? <Warn /> : ''}
+          {error.length ? <Warn /> : ""}
           {error}
         </div>
       </div>
     </section>
-  )
-})
+  );
+});
 
-export default Subscribe
+export default Subscribe;

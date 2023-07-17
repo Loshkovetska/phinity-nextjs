@@ -4,7 +4,6 @@ import CheckerItemsInsideCont from '../../../common/CheckerItemsInsideCont'
 import CustomSlider from '../../../common/CustomSlider'
 import { VideoComponent } from '../../blog/Videos'
 import Arrow from '../../../../assets/caret-right.svg'
-import GlobalState from '../../../../stores/GlobalState'
 import { useWindowDimensions } from '../../../../hooks/getWindowDimensions'
 import { useContentState } from '../../../../hooks/RootStoreProvider'
 
